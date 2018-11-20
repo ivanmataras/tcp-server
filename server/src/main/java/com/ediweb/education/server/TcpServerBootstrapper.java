@@ -22,7 +22,7 @@ public class TcpServerBootstrapper implements Bootstrapper {
             try {
                 service.awaitTermination(1, TimeUnit.SECONDS);
                 if (log.isLoggable(Level.INFO)) {
-                    log.info("Server is preparing to stop");
+                    log.info("Server is preparing to stop.");
                 }
             } catch (InterruptedException interruptedException) {
                 interruptedException.printStackTrace();
