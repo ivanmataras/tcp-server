@@ -18,11 +18,10 @@ public class TcpServer implements Server, Runnable {
 
     @Override
     public void run() {
-        latch.countDown();
         if (log.isLoggable(Level.INFO)) {
             log.info("Main task has finished.");
         }
-
+        latch.countDown();
     }
 
 }
