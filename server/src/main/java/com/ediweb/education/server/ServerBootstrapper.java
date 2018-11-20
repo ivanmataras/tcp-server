@@ -11,7 +11,7 @@ public class ServerBootstrapper {
         TcpServerBootstrapper tcpServerBootstrapper = new TcpServerBootstrapper();
         tcpServerBootstrapper.bootstrap();
         if (log.isLoggable(Level.INFO)) {
-            log.info("Server has finished the task.");
+            log.info("Server has stoped.");
         }
     }
 

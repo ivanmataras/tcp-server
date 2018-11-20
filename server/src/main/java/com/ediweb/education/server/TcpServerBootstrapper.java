@@ -1,9 +1,8 @@
 package com.ediweb.education.server;
 
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -11,26 +10,26 @@ public class TcpServerBootstrapper implements Bootstrapper {
 
     private static Logger log = Logger.getLogger(TcpServerBootstrapper.class.getName());
 
+    private final CountDownLatch latch = new CountDownLatch(1);
+
     void bootstrap() {
 
         ExecutorService service = Executors.newSingleThreadExecutor();
-        TcpServer tcpServer = new TcpServer();
-        Future<Boolean> result = service.submit(tcpServer);
+        TcpServer tcpServer = new TcpServer(latch);
+        service.submit(tcpServer);
 
-        while (!result.isDone()) {
-
-            try {
-                service.awaitTermination(1, TimeUnit.SECONDS);
-                if (log.isLoggable(Level.INFO)) {
-                    log.info("Server is preparing to stop.");
-                }
-            } catch (InterruptedException interruptedException) {
-                interruptedException.printStackTrace();
-            } finally {
-
-            }
-
+        try {
+            latch.await();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
-    }
 
+        if (!service.isShutdown()) {
+            service.shutdown();
+            if (log.isLoggable(Level.INFO)) {
+                log.info("Main executors service has shutted down.");
+            }
+        }
+
+    }
 }

@@ -1,19 +1,28 @@
 package com.ediweb.education.server;
 
-import java.util.concurrent.Callable;
+import java.util.concurrent.CountDownLatch;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class TcpServer implements Server, Callable<Boolean> {
+import static java.util.logging.Logger.getLogger;
 
-    private static Logger log = Logger.getLogger(TcpServer.class.getName());
+public class TcpServer implements Server, Runnable {
+
+    private static Logger log = getLogger(TcpServer.class.getName());
+
+    private final CountDownLatch latch;
+
+    public TcpServer(CountDownLatch latch) {
+        this.latch = latch;
+    }
 
     @Override
-    public Boolean call() {
+    public void run() {
+        latch.countDown();
         if (log.isLoggable(Level.INFO)) {
-            log.info("Server has stoped.");
+            log.info("Main task has finished.");
         }
-        return Boolean.TRUE;
+
     }
 
 }
