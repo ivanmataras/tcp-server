@@ -17,6 +17,8 @@
     <modules>
         <module>client</module>
         <module>server</module>
+        <module>dao</module>
+        <module>entities</module>
     </modules>
 
     <properties>
