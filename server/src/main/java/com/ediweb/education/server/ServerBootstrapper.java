@@ -9,7 +9,7 @@ public class ServerBootstrapper {
 
     public static void main(String[] args) {
         TcpServerBootstrapper tcpServerBootstrapper = new TcpServerBootstrapper();
-        tcpServerBootstrapper.bootstrap();
+        tcpServerBootstrapper.testBootstrap();
         if (log.isLoggable(Level.INFO)) {
             log.info("Server has stoped.");
         }
