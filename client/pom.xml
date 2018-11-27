@@ -17,13 +17,13 @@
     </parent>
 
     <build>
-        <finalName>ediClient</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.0.2</version>
                 <configuration>
+                    <finalName>client</finalName>
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>

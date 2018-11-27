@@ -12,13 +12,13 @@ public interface Document extends Entity {
 
     void setDate(LocalDate date);
 
-    String getDocumentType();
+    String getType();
 
-    void setDocumentType(String documentType);
+    void setType(String type);
 
-    String getDocumentStatus();
+    String getStatus();
 
-    void setDocumentStatus(String DocumentStatus);
+    void setStatus(String status);
 
     int getSenderId();
 
@@ -30,6 +30,6 @@ public interface Document extends Entity {
 
     String getFileName();
 
-    void setFileName(String FileName);
+    void setFileName(String fileName);
 
 }
