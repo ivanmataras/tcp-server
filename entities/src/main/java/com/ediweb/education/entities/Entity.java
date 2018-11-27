@@ -1,21 +1,9 @@
 package com.ediweb.education.entities;
 
-import java.io.Serializable;
+public interface Entity {
 
-public abstract class Entity implements Serializable, Cloneable {
+    int getId();
 
-    private int id;
-
-    public Entity(int id) {
-        this.id = id;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+    void setId(int id);
 
 }
