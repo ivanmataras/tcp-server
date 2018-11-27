@@ -36,7 +36,7 @@
                 <artifactId>liquibase-maven-plugin</artifactId>
                 <configuration>
                     <propertyFile>src/main/resources/liquibase/liquibase.properties</propertyFile>
-                    <changeLogFile>src/main/resources/liquibase/db-changelog-master.xml</changeLogFile>
+                    <changeLogFile>src/main/resources/liquibase/db-changelog-master.sql</changeLogFile>
                 </configuration>
                 <executions>
                     <execution>
