@@ -1,6 +1,6 @@
 --liquibase formatted sql
 
---changeset Ivan Mataras:initialize database
+--changeset Ivan:1
 
 CREATE TABLE "users"
 (
