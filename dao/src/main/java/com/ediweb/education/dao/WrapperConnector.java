@@ -6,28 +6,26 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.MissingResourceException;
 import java.util.Properties;
-import java.util.ResourceBundle;
-
-import static java.lang.System.err;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class WrapperConnector {
+
+    private static Logger log = Logger.getLogger(WrapperConnector.class.getName());
 
     private Connection connection;
 
     public WrapperConnector() {
         try {
-            ResourceBundle resource = ResourceBundle.getBundle("database.properties");
-            String url = resource.getString("database.url");
-            String user = resource.getString("database.user");
-            String password = resource.getString("database.password");
+            String url = ConnectionConfigurationManager.getProperty("url");
             Properties properties = new Properties();
-            properties.put("user", user);
-            properties.put("password", password);
+            properties.put("user", ConnectionConfigurationManager.getProperty("user"));
+            properties.put("password", ConnectionConfigurationManager.getProperty("password"));
             connection = DriverManager.getConnection(url, properties);
-        } catch (MissingResourceException e) {
-            err.println("properties file is missing " + e);
-        } catch (SQLException e) {
-            err.println("not obtained connection " + e);
+        } catch (MissingResourceException missingResourceException) {
+            if (log.isLoggable(Level.SEVERE)) log.severe(missingResourceException.getMessage());
+        } catch (SQLException sqlException) {
+            if (log.isLoggable(Level.SEVERE)) log.severe(sqlException.getMessage());
         }
     }
 
@@ -38,26 +36,24 @@ public class WrapperConnector {
                 return statement;
             }
         }
-        throw new SQLException("connection or statement is null");
+        throw new SQLException("Connection or statement is null");
     }
 
     public void closeStatement(Statement statement) {
         if (statement != null) {
             try {
                 statement.close();
-            } catch (SQLException e) {
-                err.println("statement is null " + e);
+            } catch (SQLException sqlException) {
+                if (log.isLoggable(Level.SEVERE)) log.severe(sqlException.getMessage());
             }
         }
     }
 
     public void closeConnection() {
-        if (connection != null) {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                System.err.println("wrong connection" + e);
-            }
+        if (connection != null) try {
+            connection.close();
+        } catch (SQLException sqlException) {
+            if (log.isLoggable(Level.SEVERE)) log.severe(sqlException.getMessage());
         }
     }
 

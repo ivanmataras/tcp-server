@@ -1,4 +1,4 @@
 package com.ediweb.education.dao;
 
-public class OrdersDAO {
+public class OrdersDAO<Orders> {
 }
