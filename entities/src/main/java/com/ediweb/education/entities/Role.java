@@ -5,8 +5,8 @@ import java.io.Serializable;
 public class Role implements Entity, Serializable, Cloneable {
 
     private int id;
-    private String roleName;
-    private String rolefullName;
+    private String name;
+    private String fullName;
 
     public Role() {
 
@@ -22,20 +22,20 @@ public class Role implements Entity, Serializable, Cloneable {
         this.id = id;
     }
 
-    public String getRoleName() {
-        return roleName;
+    public String getName() {
+        return name;
     }
 
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getRolefullName() {
-        return rolefullName;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setRolefullName(String rolefullName) {
-        this.rolefullName = rolefullName;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
 }

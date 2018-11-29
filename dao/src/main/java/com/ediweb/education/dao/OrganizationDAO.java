@@ -85,4 +85,5 @@ public class OrganizationDAO implements DAO<Organization> {
     public void close(Connection connection) {
         throw new UnsupportedOperationException();
     }
+
 }

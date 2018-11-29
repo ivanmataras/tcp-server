@@ -7,8 +7,8 @@ public class User implements Entity, Serializable, Cloneable {
     private int id;
     private String name;
     private String fullName;
-    private String organizationId;
-    private String roleId;
+    private int organizationId;
+    private int roleId;
 
     public User() {
 
@@ -40,19 +40,19 @@ public class User implements Entity, Serializable, Cloneable {
         this.fullName = fullName;
     }
 
-    public String getOrganizationId() {
+    public int getOrganizationId() {
         return organizationId;
     }
 
-    public void setOrganizationId(String organizationId) {
+    public void setOrganizationId(int organizationId) {
         this.organizationId = organizationId;
     }
 
-    public String getRoleId() {
+    public int getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(String roleId) {
+    public void setRoleId(int roleId) {
         this.roleId = roleId;
     }
 
