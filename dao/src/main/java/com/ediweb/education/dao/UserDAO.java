@@ -1,13 +1,16 @@
 package com.ediweb.education.dao;
 
-import com.ediweb.education.entities.Entity;
+import com.ediweb.education.entities.User;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class UserDAO implements DAO {
+public class UserDAO implements DAO<User> {
+
+    private static Logger log = Logger.getLogger(UserDAO.class.getName());
 
     private static final String SQL_SELECT_ALL_USERS = "SELECT id, name, full_name, organization_id, role_id FROM users";
     private static final String SQL_SELECT_USER_BY_ID = "SELECT id, name,full_name, organization_id, role_id FROM users WHERE id = ?";
@@ -26,32 +29,69 @@ public class UserDAO implements DAO {
     }
 
     @Override
-    public List<Entity> findAll() {
-        return null;
+    public List<User> findAll() {
+        List<User> users = new ArrayList<User>();
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(SQL_SELECT_ALL_USERS);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                User user = new User();
+                user.setId(resultSet.getInt("id"));
+                user.setName(resultSet.getString("name"));
+                user.setFullName(resultSet.getString("full_name"));
+                user.setOrganizationId(resultSet.getString("organization_id"));
+                user.setRoleId(resultSet.getString("role_id"));
+                users.add(user);
+            }
+        } catch (SQLException sqlException) {
+            if (log.isLoggable(Level.SEVERE)) log.severe(sqlException.getMessage());
+        } finally {
+            close(statement);
+        }
+        return users;
     }
 
     @Override
     public void deleteAll() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public User find(int id) {
+        User user = null;
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(SQL_SELECT_USER_BY_ID);
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                user.setId(resultSet.getInt("id"));
+                user.setName(resultSet.getString("name"));
+                user.setFullName(resultSet.getString("full_name"));
+                user.setOrganizationId(resultSet.getString("organization_id"));
+                user.setRoleId(resultSet.getString("role_id"));
+            }
+        } catch (SQLException sqlException) {
+            if (log.isLoggable(Level.SEVERE)) log.severe(sqlException.getMessage());
+        } finally {
+            close(statement);
+        }
+        return user;
+    }
+
+    @Override
+    public User find(User user) {
+        return user;
+    }
+
+    @Override
+    public void create(User user) {
 
     }
 
     @Override
-    public Entity find(int id) {
-        return null;
-    }
-
-    @Override
-    public Entity find(Entity entity) {
-        return null;
-    }
-
-    @Override
-    public void create(Entity entity) {
-
-    }
-
-    @Override
-    public void update(Entity entity) {
+    public void update(User user) {
 
     }
 
@@ -61,7 +101,7 @@ public class UserDAO implements DAO {
     }
 
     @Override
-    public void delete(Entity entity) {
+    public void delete(User user) {
 
     }
 
@@ -72,18 +112,12 @@ public class UserDAO implements DAO {
                 statement.close();
             }
         } catch (SQLException sqlException) {
-//            лог о невозможности закрытия Statement
+            if (log.isLoggable(Level.SEVERE)) log.severe(sqlException.getMessage());
         }
     }
 
     @Override
     public void close(Connection connection) {
-        try {
-            if (connection != null) {
-                connection.close();
-            }
-        } catch (SQLException sqlException) {
-//            генерация исключения, т.к.нарушается работа пула
-        }
+        throw new UnsupportedOperationException();
     }
 }

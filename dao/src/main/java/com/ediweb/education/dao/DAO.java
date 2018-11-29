@@ -6,23 +6,23 @@ import java.sql.Connection;
 import java.sql.Statement;
 import java.util.List;
 
-public interface DAO {
+public interface DAO<T extends Entity> {
 
-    List<Entity> findAll();
+    List<T> findAll();
 
     void deleteAll();
 
-    Entity find(int id);
+    T find(int id);
 
-    Entity find(Entity entity);
+    T find(T entity);
 
-    void create(Entity entity);
+    void create(T entity);
 
-    void update(Entity entity);
+    void update(T entity);
 
     void delete(int id);
 
-    void delete(Entity entity);
+    void delete(T entity);
 
     void close(Statement Statement);
 

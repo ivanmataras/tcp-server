@@ -2,32 +2,25 @@ package com.ediweb.education.dao;
 
 import org.postgresql.ds.PGConnectionPoolDataSource;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ConnectionPool {
 
+    private static Logger log = Logger.getLogger(ConnectionPool.class.getName());
+
     private static final String DATASOURCE_NAME = "jdbc/education_edi";
-    private static DataSource dataSource;
+    private static PGConnectionPoolDataSource dataSource;
 
     static {
-        try {
-            PGConnectionPoolDataSource pgConnectionPoolDataSource = new PGConnectionPoolDataSource();
-            pgConnectionPoolDataSource.setServerName();
-            pgConnectionPoolDataSource.setDatabaseName();
-            pgConnectionPoolDataSource.setPortNumber();
-            pgConnectionPoolDataSource.setUser();
-            pgConnectionPoolDataSource.setPassword();
-            Context initContext = new InitialContext();
-            Context envContext = (Context) initContext.lookup("java:/comp/env");
-            dataSource = (DataSource) envContext.lookup(DATASOURCE_NAME);
-        } catch (NamingException e) {
-            e.printStackTrace();
-        }
+        dataSource = new PGConnectionPoolDataSource();
+        dataSource.setServerName(DataSourceConfigurationManager.getProperty("serverName"));
+        dataSource.setPortNumber(Integer.valueOf(DataSourceConfigurationManager.getProperty("portNumber")));
+        dataSource.setDatabaseName(DataSourceConfigurationManager.getProperty("databaseName"));
+        dataSource.setUser(DataSourceConfigurationManager.getProperty("user"));
+        dataSource.setPassword(DataSourceConfigurationManager.getProperty("password"));
     }
 
     private ConnectionPool() {
@@ -38,12 +31,14 @@ public class ConnectionPool {
         return connection;
     }
 
-    // метод возвращения Connection в пул
-
- /* Соединение извлекается из пула очень просто:
-    Connection connection = dataSource.getConnection();
-    После выполнения запроса соединение завершается, и его объект должен
-    быть возвращен обратно в пул вызовом:
-    connection.close();*/
+    public static void closeConnection(Connection connection) {
+        try {
+            if (connection != null) {
+                connection.close();
+            }
+        } catch (SQLException sqlException) {
+            if (log.isLoggable(Level.SEVERE)) log.severe(sqlException.getMessage());
+        }
+    }
 
 }

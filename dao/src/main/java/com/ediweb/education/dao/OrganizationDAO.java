@@ -1,12 +1,17 @@
 package com.ediweb.education.dao;
 
-import com.ediweb.education.entities.Entity;
+import com.ediweb.education.entities.Organization;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class OrganizationDAO implements DAO {
+public class OrganizationDAO implements DAO<Organization> {
+
+    private static Logger log = Logger.getLogger(OrganizationDAO.class.getName());
 
     private static final String SQL_SELECT_ALL_ORGANIZATIONS = "SELECT id, name, full_name FROM organization";
     private static final String SQL_SELECT_ORGANIZATION_BY_ID = "SELECT id, name, full_name FROM organization WHERE id = ?";
@@ -25,7 +30,7 @@ public class OrganizationDAO implements DAO {
     }
 
     @Override
-    public List<Entity> findAll() {
+    public List<Organization> findAll() {
         return null;
     }
 
@@ -35,22 +40,23 @@ public class OrganizationDAO implements DAO {
     }
 
     @Override
-    public Entity find(int id) {
+    public Organization find(int id) {
         return null;
     }
 
     @Override
-    public Entity find(Entity entity) {
+    public Organization find(Organization organization) {
         return null;
     }
 
+
     @Override
-    public void create(Entity entity) {
+    public void create(Organization organization) {
 
     }
 
     @Override
-    public void update(Entity entity) {
+    public void update(Organization organization) {
 
     }
 
@@ -60,17 +66,23 @@ public class OrganizationDAO implements DAO {
     }
 
     @Override
-    public void delete(Entity entity) {
+    public void delete(Organization organization) {
 
     }
 
     @Override
-    public void close(Statement Statement) {
-
+    public void close(Statement statement) {
+        try {
+            if (statement != null) {
+                statement.close();
+            }
+        } catch (SQLException sqlException) {
+            if (log.isLoggable(Level.SEVERE)) log.severe(sqlException.getMessage());
+        }
     }
 
     @Override
     public void close(Connection connection) {
-
+        throw new UnsupportedOperationException();
     }
 }
