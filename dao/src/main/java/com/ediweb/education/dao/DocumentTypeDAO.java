@@ -4,6 +4,6 @@ import java.util.logging.Logger;
 
 public class DocumentTypeDAO<DocumentType> {
 
-    private static Logger log = Logger.getLogger(DocumentTypeDAO.class.getName());
+    private static final Logger log = Logger.getLogger(DocumentTypeDAO.class.getName());
 
 }

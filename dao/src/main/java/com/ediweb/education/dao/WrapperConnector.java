@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 public class WrapperConnector {
 
-    private static Logger log = Logger.getLogger(WrapperConnector.class.getName());
+    private static final Logger log = Logger.getLogger(WrapperConnector.class.getName());
 
     private Connection connection;
 

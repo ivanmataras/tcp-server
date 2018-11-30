@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 
 public class UserDAO implements DAO<User> {
 
-    private static Logger log = Logger.getLogger(UserDAO.class.getName());
+    private static final Logger log = Logger.getLogger(UserDAO.class.getName());
 
     private static final String SQL_SELECT_ALL_USERS = "SELECT id, name, full_name, organization_id, role_id FROM users";
     private static final String SQL_DELETE_ALL_USERS = "SELECT id, name, full_name, organization_id, role_id FROM users";

@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 public class OrganizationDAO implements DAO<Organization> {
 
-    private static Logger log = Logger.getLogger(OrganizationDAO.class.getName());
+    private static final Logger log = Logger.getLogger(OrganizationDAO.class.getName());
 
     private static final String SQL_SELECT_ALL_ORGANIZATIONS = "SELECT id, name, full_name FROM organization";
     private static final String SQL_SELECT_ORGANIZATION_BY_ID = "SELECT id, name, full_name FROM organization WHERE id = ?";

@@ -5,7 +5,7 @@ import java.util.logging.Logger;
 
 public class DataSourceConfigurationManager {
 
-    private static Logger log = Logger.getLogger(DataSourceConfigurationManager.class.getName());
+    private static final Logger log = Logger.getLogger(DataSourceConfigurationManager.class.getName());
 
     private final static ResourceBundle resourceBundle = ResourceBundle.getBundle("datasource");
 

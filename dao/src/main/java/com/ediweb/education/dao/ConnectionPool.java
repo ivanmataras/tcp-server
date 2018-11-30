@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 
 public class ConnectionPool {
 
-    private static Logger log = Logger.getLogger(ConnectionPool.class.getName());
+    private static final Logger log = Logger.getLogger(ConnectionPool.class.getName());
 
     private static final String DATASOURCE_NAME = "jdbc/education_edi";
     private static PGConnectionPoolDataSource dataSource;

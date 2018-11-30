@@ -4,6 +4,6 @@ import java.util.logging.Logger;
 
 public class OrdersDAO<Orders> {
 
-    private static Logger log = Logger.getLogger(OrdersDAO.class.getName());
+    private static final Logger log = Logger.getLogger(OrdersDAO.class.getName());
 
 }

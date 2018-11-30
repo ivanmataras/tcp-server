@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 
 public class RoleDAO implements DAO<Role> {
 
-    private static Logger log = Logger.getLogger(RoleDAO.class.getName());
+    private static final Logger log = Logger.getLogger(RoleDAO.class.getName());
 
     private static final String SQL_SELECT_ALL_ROLES = "SELECT id, name, full_name FROM roles";
     private static final String SQL_DELETE_ALL_ROLES = "DELETE FROM roles";

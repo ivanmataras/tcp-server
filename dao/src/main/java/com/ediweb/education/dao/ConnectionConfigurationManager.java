@@ -5,7 +5,7 @@ import java.util.logging.Logger;
 
 public class ConnectionConfigurationManager {
 
-    private static Logger log = Logger.getLogger(ConnectionConfigurationManager.class.getName());
+    private final static Logger log = Logger.getLogger(ConnectionConfigurationManager.class.getName());
 
     private final static ResourceBundle resourceBundle = ResourceBundle.getBundle("database");
 

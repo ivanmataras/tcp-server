@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 
 public class ConnectorPostgres {
 
-    private static Logger log = Logger.getLogger(ConnectorPostgres.class.getName());
+    private static final Logger log = Logger.getLogger(ConnectorPostgres.class.getName());
 
     public static Connection getConnection() throws SQLException {
 

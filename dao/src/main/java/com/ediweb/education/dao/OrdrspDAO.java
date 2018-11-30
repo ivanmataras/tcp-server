@@ -4,6 +4,6 @@ import java.util.logging.Logger;
 
 public class OrdrspDAO<Ordrsp> {
 
-    private static Logger log = Logger.getLogger(OrdrspDAO.class.getName());
+    private static final Logger log = Logger.getLogger(OrdrspDAO.class.getName());
 
 }

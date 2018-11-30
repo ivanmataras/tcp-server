@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 public class RouteDAO implements DAO<Route> {
 
-    private static Logger log = Logger.getLogger(RouteDAO.class.getName());
+    private static final Logger log = Logger.getLogger(RouteDAO.class.getName());
 
     private static final String SQL_SELECT_ALL_ROUTES = "SELECT id, owner_id, sender, receiver FROM routes";
     private static final String SQL_SELECT_ROUTE_BY_ID = "SELECT id, owner_id, sender, receiver FROM routes WHERE id = ?";
