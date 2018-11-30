@@ -1,9 +1,12 @@
 package com.ediweb.education.client.ui;
 
 import javax.swing.*;
+import javax.swing.table.AbstractTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by rusakov on 24.11.18.
@@ -20,10 +23,12 @@ public class DocsForm {
 	private JComboBox cbDirection;
 	private JButton btnSearch;
 	private JButton btnCreateDoc;
-	private JTable tblDocs;
 	private JPanel pnlDocType;
 	private JLabel lblDocType;
 	private JLabel lblDirection;
+
+	final String[] headers = new String[]{"Отправитель", "Получаетель", "Дата создания"};
+	final List<String[]> values = new ArrayList<String[]>();
 
 	public DocsForm(final JFrame frame) {
 		this.frame = frame;
@@ -39,6 +44,34 @@ public class DocsForm {
 			}
 		});
 
+		String[] value = new String[]{"Ритейлер", "Поставщик", "28/11/2018 10:45:22"};
+		values.add(value);
+
+		final AbstractTableModel tabelDocsModel = new TabelDocs(headers, values);
+		JTable tblDocs = new JTable(tabelDocsModel);
+		JScrollPane scrlDocs = new JScrollPane(tblDocs);
+		GridBagConstraints gbc = initGridBagConstraints();
+		pnlDocs.add(scrlDocs, gbc);
+
+		btnSearch.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String[] value = new String[]{"Ритейлер", "Поставщик", "28/11/2018 10:45:22"};
+				values.add(value);
+				tabelDocsModel.fireTableDataChanged();
+			}
+		});
+
+	}
+
+	private GridBagConstraints initGridBagConstraints() {
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.gridx = 0;
+		gbc.gridy = 2;
+		gbc.weightx = 1.0;
+		gbc.weighty = 1.0;
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.insets = new Insets(5, 5, 5, 5);
+		return gbc;
 	}
 
 	public JPanel getPanel() {
@@ -109,15 +142,6 @@ public class DocsForm {
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.insets = new Insets(5, 5, 5, 5);
 		pnlRoot.add(pnlDocs, gbc);
-		tblDocs = new JTable();
-		gbc = new GridBagConstraints();
-		gbc.gridx = 0;
-		gbc.gridy = 0;
-		gbc.weightx = 1.0;
-		gbc.weighty = 1.0;
-		gbc.fill = GridBagConstraints.BOTH;
-		gbc.insets = new Insets(5, 5, 5, 5);
-		pnlDocs.add(tblDocs, gbc);
 		pnlDocType = new JPanel();
 		pnlDocType.setLayout(new GridBagLayout());
 		gbc = new GridBagConstraints();
