@@ -12,7 +12,7 @@ public class ConnectionPool {
     private static final Logger log = Logger.getLogger(ConnectionPool.class.getName());
 
     private static final String DATASOURCE_NAME = "jdbc/education_edi";
-    private static PGConnectionPoolDataSource dataSource;
+    private static final PGConnectionPoolDataSource dataSource;
 
     static {
         dataSource = new PGConnectionPoolDataSource();

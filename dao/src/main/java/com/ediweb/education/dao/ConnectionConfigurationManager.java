@@ -5,9 +5,9 @@ import java.util.logging.Logger;
 
 public class ConnectionConfigurationManager {
 
-    private final static Logger log = Logger.getLogger(ConnectionConfigurationManager.class.getName());
+    private static final Logger log = Logger.getLogger(ConnectionConfigurationManager.class.getName());
 
-    private final static ResourceBundle resourceBundle = ResourceBundle.getBundle("database");
+    private static final ResourceBundle resourceBundle = ResourceBundle.getBundle("database");
 
     private ConnectionConfigurationManager() {
     }

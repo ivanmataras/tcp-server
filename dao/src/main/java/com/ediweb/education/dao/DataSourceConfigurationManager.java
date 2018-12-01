@@ -7,7 +7,7 @@ public class DataSourceConfigurationManager {
 
     private static final Logger log = Logger.getLogger(DataSourceConfigurationManager.class.getName());
 
-    private final static ResourceBundle resourceBundle = ResourceBundle.getBundle("datasource");
+    private static final ResourceBundle resourceBundle = ResourceBundle.getBundle("datasource");
 
     private DataSourceConfigurationManager() {
     }
