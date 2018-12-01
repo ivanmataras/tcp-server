@@ -6,8 +6,8 @@ public class Route implements Entity, Serializable, Cloneable {
 
     private int id;
     private int ownerId;
-    private String sender;
-    private String receiver;
+    private int sender_id;
+    private int receiver_id;
 
     public Route() {
 
@@ -29,20 +29,20 @@ public class Route implements Entity, Serializable, Cloneable {
         this.ownerId = ownerId;
     }
 
-    public String getSender() {
-        return sender;
+    public int getSender_id() {
+        return sender_id;
     }
 
-    public void setSender(String sender) {
-        this.sender = sender;
+    public void setSender_id(int sender_id) {
+        this.sender_id = sender_id;
     }
 
-    public String getReceiver() {
-        return receiver;
+    public int getReceiver_id() {
+        return receiver_id;
     }
 
-    public void setReceiver(String receiver) {
-        this.receiver = receiver;
+    public void setReceiver_id(int receiver_id) {
+        this.receiver_id = receiver_id;
     }
 
 }

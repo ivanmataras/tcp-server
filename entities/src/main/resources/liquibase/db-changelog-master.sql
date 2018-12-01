@@ -9,6 +9,7 @@ CREATE TABLE "users"
   "full_name"       character varying(32) NOT NULL,
   "organization_id" integer               NOT NULL,
   "role_id"         integer               NOT NULL,
+  "password"        character varying(32) NOT NULL,
   CONSTRAINT users_pk PRIMARY KEY ("id")
 ) WITH
 (
@@ -69,10 +70,10 @@ CREATE TABLE "document_statuses"
 
 CREATE TABLE "routes"
 (
-  "id"       serial  NOT NULL,
-  "owner_id" integer NOT NULL,
-  "sender"   integer NOT NULL,
-  "receiver" integer NOT NULL,
+  "id"          serial  NOT NULL,
+  "owner_id"    integer NOT NULL,
+  "sender_id"   integer NOT NULL,
+  "receiver_id" integer NOT NULL,
   CONSTRAINT routes_pk PRIMARY KEY ("id")
 ) WITH
 (
@@ -109,9 +110,9 @@ ALTER TABLE "users"
 ALTER TABLE "routes"
   ADD CONSTRAINT "routes_fk0" FOREIGN KEY ("owner_id") REFERENCES "organization" ("id");
 ALTER TABLE "routes"
-  ADD CONSTRAINT "routes_fk1" FOREIGN KEY ("sender") REFERENCES "organization" ("id");
+  ADD CONSTRAINT "routes_fk1" FOREIGN KEY ("sender_id") REFERENCES "organization" ("id");
 ALTER TABLE "routes"
-  ADD CONSTRAINT "routes_fk2" FOREIGN KEY ("receiver") REFERENCES "organization" ("id");
+  ADD CONSTRAINT "routes_fk2" FOREIGN KEY ("receiver_id") REFERENCES "organization" ("id");
 
 ALTER TABLE "documents"
   ADD CONSTRAINT "documents_fk0" FOREIGN KEY ("type") REFERENCES "document_types" ("id");
@@ -121,3 +122,5 @@ ALTER TABLE "documents"
   ADD CONSTRAINT "documents_fk2" FOREIGN KEY ("sender_id") REFERENCES "organization" ("id");
 ALTER TABLE "documents"
   ADD CONSTRAINT "documents_fk3" FOREIGN KEY ("receiver_id") REFERENCES "organization" ("id");
+
+

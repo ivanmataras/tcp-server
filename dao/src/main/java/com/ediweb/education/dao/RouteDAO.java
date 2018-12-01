@@ -13,10 +13,11 @@ public class RouteDAO implements DAO<Route> {
 
     private static final Logger log = Logger.getLogger(RouteDAO.class.getName());
 
-    private static final String SQL_SELECT_ALL_ROUTES = "SELECT id, owner_id, sender, receiver FROM routes";
-    private static final String SQL_SELECT_ROUTE_BY_ID = "SELECT id, owner_id, sender, receiver FROM routes WHERE id = ?";
-    private static final String SQL_INSERT_ROUTE = "INSERT INTO routes (owner_id, sender, receiver) VALUES(?, ?, ?)";
-    private static final String SQL_UPDATE_ROUTE = "UPDATE routes SET owner_id = ?, sender = ?, receiver = ? WHERE id = ?";
+    private static final String SQL_SELECT_ALL_ROUTES = "SELECT id, owner_id, sender_id, receiver_id FROM routes";
+    private static final String SQL_DELETE_ALL_ROUTES = "DELETE FROM routes";
+    private static final String SQL_SELECT_ROUTE_BY_ID = "SELECT id, owner_id, sender_id, receiver_id FROM routes WHERE id = ?";
+    private static final String SQL_INSERT_ROUTE = "INSERT INTO routes (owner_id, sender_id, receiver_id) VALUES(?, ?, ?)";
+    private static final String SQL_UPDATE_ROUTE = "UPDATE routes SET owner_id = ?, sender_id = ?, receiver_id = ? WHERE id = ?";
     private static final String SQL_DELETE_ROUTE_BY_ID = "DELETE FROM routes WHERE id = ?";
     private static final String SQL_DELETE_ROUTE = "DELETE FROM routes WHERE id = ?";
 

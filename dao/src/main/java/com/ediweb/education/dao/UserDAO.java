@@ -12,12 +12,12 @@ public class UserDAO implements DAO<User> {
 
     private static final Logger log = Logger.getLogger(UserDAO.class.getName());
 
-    private static final String SQL_SELECT_ALL_USERS = "SELECT id, name, full_name, organization_id, role_id FROM users";
-    private static final String SQL_DELETE_ALL_USERS = "SELECT id, name, full_name, organization_id, role_id FROM users";
-    private static final String SQL_SELECT_USER_BY_ID = "SELECT id, name,full_name, organization_id, role_id FROM users WHERE id = ?";
-    private static final String SQL_SELECT_USER = "SELECT id, name,full_name, organization_id, role_id FROM users WHERE id = ?";
-    private static final String SQL_INSERT_USER = "INSERT INTO users (name, full_name, organization_id, role_id) VALUES(?, ?, ?, ?)";
-    private static final String SQL_UPDATE_USER = "UPDATE users SET name = ?, full_name = ?, organization_id = ?, role_id = ? WHERE id = ?";
+    private static final String SQL_SELECT_ALL_USERS = "SELECT id, name, full_name, organization_id, role_id, password FROM users";
+    private static final String SQL_DELETE_ALL_USERS = "DELETE FROM users";
+    private static final String SQL_SELECT_USER_BY_ID = "SELECT id, name,full_name, organization_id, role_id, password FROM users WHERE id = ?";
+    private static final String SQL_SELECT_USER = "SELECT id, name,full_name, organization_id, role_id, password FROM users WHERE id = ?";
+    private static final String SQL_INSERT_USER = "INSERT INTO users (name, full_name, organization_id, role_id, password) VALUES(?, ?, ?, ?, ?)";
+    private static final String SQL_UPDATE_USER = "UPDATE users SET name = ?, full_name = ?, organization_id = ?, role_id = ?, password = ? WHERE id = ?";
     private static final String SQL_DELETE_USER_BY_ID = "DELETE FROM users WHERE id = ?";
     private static final String SQL_DELETE_USER = "DELETE FROM users WHERE id = ?";
 
@@ -44,6 +44,7 @@ public class UserDAO implements DAO<User> {
                 user.setFullName(resultSet.getString("full_name"));
                 user.setOrganizationId(resultSet.getInt("organization_id"));
                 user.setRoleId(resultSet.getInt("role_id"));
+                user.setPassword(resultSet.getString("password"));
                 users.add(user);
             }
         } catch (SQLException sqlException) {
@@ -82,6 +83,7 @@ public class UserDAO implements DAO<User> {
                 user.setFullName(resultSet.getString("full_name"));
                 user.setOrganizationId(resultSet.getInt("organization_id"));
                 user.setRoleId(resultSet.getInt("role_id"));
+                user.setPassword(resultSet.getString("password"));
             }
         } catch (SQLException sqlException) {
             if (log.isLoggable(Level.SEVERE)) log.severe(sqlException.getMessage());
@@ -105,6 +107,7 @@ public class UserDAO implements DAO<User> {
                 user.setFullName(resultSet.getString("full_name"));
                 user.setOrganizationId(resultSet.getInt("organization_id"));
                 user.setRoleId(resultSet.getInt("role_id"));
+                user.setPassword(resultSet.getString("password"));
             }
         } catch (SQLException sqlException) {
             if (log.isLoggable(Level.SEVERE)) log.severe(sqlException.getMessage());
@@ -123,6 +126,7 @@ public class UserDAO implements DAO<User> {
             statement.setString(2, user.getFullName());
             statement.setInt(3, user.getOrganizationId());
             statement.setInt(4, user.getRoleId());
+            statement.setString(5, user.getPassword());
             statement.executeUpdate();
         } catch (SQLException sqlException) {
             if (log.isLoggable(Level.SEVERE)) log.severe(sqlException.getMessage());
@@ -140,7 +144,8 @@ public class UserDAO implements DAO<User> {
             statement.setString(2, user.getFullName());
             statement.setInt(3, user.getOrganizationId());
             statement.setInt(4, user.getRoleId());
-            statement.setInt(5, user.getId());
+            statement.setString(5, user.getPassword());
+            statement.setInt(6, user.getId());
             statement.executeUpdate();
         } catch (SQLException sqlException) {
             if (log.isLoggable(Level.SEVERE)) log.severe(sqlException.getMessage());

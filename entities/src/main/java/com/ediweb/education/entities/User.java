@@ -9,6 +9,7 @@ public class User implements Entity, Serializable, Cloneable {
     private String fullName;
     private int organizationId;
     private int roleId;
+    private String password;
 
     public User() {
 
@@ -54,6 +55,14 @@ public class User implements Entity, Serializable, Cloneable {
 
     public void setRoleId(int roleId) {
         this.roleId = roleId;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
 }
