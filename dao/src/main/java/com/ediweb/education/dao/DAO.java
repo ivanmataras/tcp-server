@@ -24,7 +24,7 @@ public interface DAO<T extends Entity> {
 
     void delete(T entity);
 
-    void close(Statement Statement);
+    void close(Statement statement);
 
     void close(Connection connection);
 
