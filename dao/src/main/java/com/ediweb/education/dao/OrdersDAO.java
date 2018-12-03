@@ -3,10 +3,7 @@ package com.ediweb.education.dao;
 
 import com.ediweb.education.entities.Orders;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -60,8 +57,24 @@ public class OrdersDAO implements DAO<Orders> {
     }
 
     @Override
-    public void update(Orders entity) {
-
+    public void update(Orders orders) {
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(SQL_UPDATE_DOCUMENT);
+            statement.setInt(1, orders.getNumber());
+            statement.setTimestamp(2, Timestamp.valueOf(orders.getDate().atStartOfDay()));
+            statement.setInt(3, DocumentTypeId.ORDERS.getDocumentTypeId());
+            statement.setInt(4, orders.getStatusId());
+            statement.setString(5, orders.getFileName());
+            statement.setInt(6, orders.getSenderId());
+            statement.setInt(7, orders.getReceiverId());
+            statement.setInt(8, orders.getId());
+            statement.executeUpdate();
+        } catch (SQLException sqlException) {
+            if (log.isLoggable(Level.SEVERE)) log.severe(sqlException.getMessage());
+        } finally {
+            close(statement);
+        }
     }
 
     @Override
@@ -69,7 +82,7 @@ public class OrdersDAO implements DAO<Orders> {
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement(SQL_DELETE_DOCUMENT);
-            statement.setString(1, DocymentType.ORDERS.getDocumentType());
+            statement.setInt(1, DocumentTypeId.ORDERS.getDocumentTypeId());
             statement.setInt(2, id);
             statement.executeUpdate();
         } catch (SQLException sqlException) {
@@ -84,7 +97,7 @@ public class OrdersDAO implements DAO<Orders> {
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement(SQL_DELETE_DOCUMENT);
-            statement.setString(1, orders.getType());
+            statement.setInt(1, DocumentTypeId.ORDERS.getDocumentTypeId());
             statement.setInt(2, orders.getId());
             statement.executeUpdate();
         } catch (SQLException sqlException) {

@@ -1,12 +1,12 @@
 package com.ediweb.education.dao;
 
-public enum DocymentType {
+public enum DocumentType {
 
-    ORDERS("Orders"), ORDRSP("Ordrsp");
+    ORDERS("ORDERS"), ORDRSP("ORDRSP");
 
     private String documentType;
 
-    DocymentType(String documentType) {
+    DocumentType(String documentType) {
         this.documentType = documentType;
     }
 

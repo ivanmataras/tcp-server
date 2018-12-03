@@ -12,13 +12,13 @@ public interface Document extends Entity {
 
     void setDate(LocalDate date);
 
-    String getType();
+    int getTypeId();
 
-    void setType(String type);
+    void setTypeId(int typeId);
 
-    String getStatus();
+    int getStatusId();
 
-    void setStatus(String status);
+    void setStatusId(int statusId);
 
     int getSenderId();
 

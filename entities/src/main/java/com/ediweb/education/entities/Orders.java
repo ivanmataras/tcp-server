@@ -8,8 +8,8 @@ public class Orders implements Document, Entity, Serializable, Cloneable {
     private int id;
     private int number;
     private LocalDate date;
-    private String type;
-    private String status;
+    private int typeId;
+    private int statusId;
     private int senderId;
     private int receiverId;
     private String fileName;
@@ -49,23 +49,23 @@ public class Orders implements Document, Entity, Serializable, Cloneable {
     }
 
     @Override
-    public String getType() {
-        return type;
+    public int getTypeId() {
+        return typeId;
     }
 
     @Override
-    public void setType(String type) {
-        this.type = type;
+    public void setTypeId(int typeId) {
+        this.typeId = typeId;
     }
 
     @Override
-    public String getStatus() {
-        return status;
+    public int getStatusId() {
+        return statusId;
     }
 
     @Override
-    public void setStatus(String status) {
-        this.status = status;
+    public void setStatusId(int statusId) {
+        this.statusId = statusId;
     }
 
     @Override
