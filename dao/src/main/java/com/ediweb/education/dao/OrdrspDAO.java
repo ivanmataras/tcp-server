@@ -14,14 +14,14 @@ public class OrdrspDAO implements DAO<Ordrsp> {
 
     private static final Logger log = Logger.getLogger(OrdrspDAO.class.getName());
 
-    private static final String SQL_SELECT_ALL_DOCUMENTS = "SELECT id, number, date, type, status, filename, sender_id, receiver_id FROM documents WHERE type = ?";
-    private static final String SQL_DELETE_ALL_DOCUMENTS = "DELETE FROM documents WHERE type = ?";
-    private static final String SQL_SELECT_DOCUMENT_BY_ID = "SELECT id, number, date, type, status, filename, sender_id, receiver_id FROM documents WHERE type = ? AND id = ?";
-    private static final String SQL_SELECT_DOCUMENT = "SELECT id, number, date, type, status, filename, sender_id, receiver_id FROM documents WHERE id = ? AND id = ?";
-    private static final String SQL_INSERT_DOCUMENT = "INSERT INTO documents (number, date, type, status, filename, sender_id, receiver_id) VALUES(?, ?, ?, ?, ?, ?, ?)";
-    private static final String SQL_UPDATE_DOCUMENT = "UPDATE documents SET number = ?, date = ?, type = ?, status = ?, filename = ?, sender_id = ?, receiver_id = ? WHERE type = ? AND id = ?";
-    private static final String SQL_DELETE_DOCUMENT_BY_ID = "DELETE FROM documents WHERE type = ? AND id = ?";
-    private static final String SQL_DELETE_DOCUMENT = "DELETE FROM documents WHERE type = ? AND id = ?";
+    private static final String SQL_SELECT_ALL_DOCUMENTS = "SELECT id, number, date, type_id, status_id, filename, sender_id, receiver_id FROM documents WHERE type_id = ?";
+    private static final String SQL_DELETE_ALL_DOCUMENTS = "DELETE FROM documents WHERE type_id = ?";
+    private static final String SQL_SELECT_DOCUMENT_BY_ID = "SELECT id, number, date, type_id, status_id, filename, sender_id, receiver_id FROM documents WHERE type_id = ? AND id = ?";
+    private static final String SQL_SELECT_DOCUMENT = "SELECT id, number, date, type_id, status_id, filename, sender_id, receiver_id FROM documents WHERE type_id = ? AND id = ?";
+    private static final String SQL_INSERT_DOCUMENT = "INSERT INTO documents (number, date, type_id, status_id, filename, sender_id, receiver_id) VALUES(?, ?, ?, ?, ?, ?, ?)";
+    private static final String SQL_UPDATE_DOCUMENT = "UPDATE documents SET number = ?, date = ?, type_id = ?, status_id = ?, filename = ?, sender_id = ?, receiver_id = ? WHERE type_id = ? AND id = ?";
+    private static final String SQL_DELETE_DOCUMENT_BY_ID = "DELETE FROM documents WHERE type_id = ? AND id = ?";
+    private static final String SQL_DELETE_DOCUMENT = "DELETE FROM documents WHERE type_id = ? AND id = ?";
 
     private Connection connection;
 
@@ -67,7 +67,7 @@ public class OrdrspDAO implements DAO<Ordrsp> {
     public void delete(int id) {
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement(SQL_DELETE_DOCUMENT);
+            statement = connection.prepareStatement(SQL_DELETE_DOCUMENT_BY_ID);
             statement.setString(1, DocumentType.ORDERS.getDocumentType());
             statement.setInt(2, id);
             statement.executeUpdate();
