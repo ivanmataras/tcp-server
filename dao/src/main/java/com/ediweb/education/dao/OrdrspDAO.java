@@ -83,7 +83,7 @@ public class OrdrspDAO implements DAO<Ordrsp> {
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement(SQL_DELETE_DOCUMENT);
-            statement.setString(1, ordrsp.getType());
+            statement.setInt(1, DocumentTypeId.ORDRSP.getDocumentTypeId());
             statement.setInt(2, ordrsp.getId());
             statement.executeUpdate();
         } catch (SQLException sqlException) {
