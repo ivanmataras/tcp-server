@@ -5,7 +5,7 @@ import java.util.logging.Logger;
 
 public class ServerBootstrapper {
 
-    private static Logger log = Logger.getLogger(ServerBootstrapper.class.getName());
+    private static final Logger log = Logger.getLogger(ServerBootstrapper.class.getName());
 
     public static void main(String[] args) {
         TcpServerBootstrapper tcpServerBootstrapper = new TcpServerBootstrapper();

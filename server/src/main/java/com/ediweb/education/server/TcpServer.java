@@ -8,7 +8,7 @@ import static java.util.logging.Logger.getLogger;
 
 public class TcpServer implements Server, Runnable {
 
-    private static Logger log = getLogger(TcpServer.class.getName());
+    private static final Logger log = getLogger(TcpServer.class.getName());
 
     private final CountDownLatch latch;
 

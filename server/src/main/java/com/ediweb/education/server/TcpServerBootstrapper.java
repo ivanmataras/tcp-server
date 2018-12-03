@@ -1,14 +1,8 @@
 package com.ediweb.education.server;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.MissingResourceException;
 import java.util.Properties;
-import java.util.ResourceBundle;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -17,7 +11,7 @@ import java.util.logging.Logger;
 
 public class TcpServerBootstrapper implements Bootstrapper {
 
-    private static Logger log = Logger.getLogger(TcpServerBootstrapper.class.getName());
+    private static final Logger log = Logger.getLogger(TcpServerBootstrapper.class.getName());
 
     private final CountDownLatch latch = new CountDownLatch(1);
 

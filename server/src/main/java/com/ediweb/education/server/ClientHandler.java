@@ -1,13 +1,12 @@
 package com.ediweb.education.server;
 
-import java.io.IOException;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ClientHandler implements Runnable {
 
-    private static Logger log = Logger.getLogger(ClientHandler.class.getName());
+    private static final Logger log = Logger.getLogger(ClientHandler.class.getName());
 
     private static Socket clientDialog;
 
