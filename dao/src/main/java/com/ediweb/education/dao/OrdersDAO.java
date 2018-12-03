@@ -4,6 +4,7 @@ package com.ediweb.education.dao;
 import com.ediweb.education.entities.Orders;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,22 +34,95 @@ public class OrdersDAO implements DAO<Orders> {
 
     @Override
     public List<Orders> findAll() {
-        return null;
+        List<Orders> orderss = new ArrayList<Orders>();
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(SQL_SELECT_ALL_DOCUMENTS);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Orders orders = new Orders();
+                orders.setId(resultSet.getInt("id"));
+                orders.setNumber(resultSet.getInt("number"));
+                orders.setDate(resultSet.getTimestamp("date").toLocalDateTime().toLocalDate());
+                orders.setTypeId(resultSet.getInt("type_id"));
+                orders.setStatusId(resultSet.getInt("status_id"));
+                orders.setFileName(resultSet.getString("filename"));
+                orders.setSenderId(resultSet.getInt("sender_id"));
+                orders.setReceiverId(resultSet.getInt("receiver_id"));
+                orderss.add(orders);
+            }
+        } catch (SQLException sqlException) {
+            if (log.isLoggable(Level.SEVERE)) log.severe(sqlException.getMessage());
+        } finally {
+            close(statement);
+        }
+        return orderss;
     }
 
     @Override
     public void deleteAll() {
-
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(SQL_DELETE_ALL_DOCUMENTS);
+            statement.executeUpdate();
+        } catch (SQLException sqlException) {
+            if (log.isLoggable(Level.SEVERE)) log.severe(sqlException.getMessage());
+        } finally {
+            close(statement);
+        }
     }
 
     @Override
     public Orders find(int id) {
-        return null;
+        Orders orders = null;
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(SQL_SELECT_DOCUMENT_BY_ID);
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                orders = new Orders();
+                orders.setId(resultSet.getInt("id"));
+                orders.setNumber(resultSet.getInt("number"));
+                orders.setDate(resultSet.getTimestamp("date").toLocalDateTime().toLocalDate());
+                orders.setTypeId(resultSet.getInt("type_id"));
+                orders.setStatusId(resultSet.getInt("status_id"));
+                orders.setFileName(resultSet.getString("filename"));
+                orders.setSenderId(resultSet.getInt("sender_id"));
+                orders.setReceiverId(resultSet.getInt("receiver_id"));
+            }
+        } catch (SQLException sqlException) {
+            if (log.isLoggable(Level.SEVERE)) log.severe(sqlException.getMessage());
+        } finally {
+            close(statement);
+        }
+        return orders;
     }
 
     @Override
-    public Orders find(Orders entity) {
-        return null;
+    public Orders find(Orders orders) {
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(SQL_SELECT_DOCUMENT);
+            statement.setInt(1, orders.getId());
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                orders = new Orders();
+                orders.setId(resultSet.getInt("id"));
+                orders.setNumber(resultSet.getInt("number"));
+                orders.setDate(resultSet.getTimestamp("date").toLocalDateTime().toLocalDate());
+                orders.setTypeId(resultSet.getInt("type_id"));
+                orders.setStatusId(resultSet.getInt("status_id"));
+                orders.setFileName(resultSet.getString("filename"));
+                orders.setSenderId(resultSet.getInt("sender_id"));
+                orders.setReceiverId(resultSet.getInt("receiver_id"));
+            }
+        } catch (SQLException sqlException) {
+            if (log.isLoggable(Level.SEVERE)) log.severe(sqlException.getMessage());
+        } finally {
+            close(statement);
+        }
+        return orders;
     }
 
     @Override
@@ -63,7 +137,6 @@ public class OrdersDAO implements DAO<Orders> {
             statement.setString(5, orders.getFileName());
             statement.setInt(6, orders.getSenderId());
             statement.setInt(7, orders.getReceiverId());
-            statement.setInt(8, orders.getId());
             statement.executeUpdate();
         } catch (SQLException sqlException) {
             if (log.isLoggable(Level.SEVERE)) log.severe(sqlException.getMessage());
