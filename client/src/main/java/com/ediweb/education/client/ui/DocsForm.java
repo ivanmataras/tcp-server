@@ -1,5 +1,7 @@
 package com.ediweb.education.client.ui;
 
+import com.ediweb.education.client.ui.models.DocsFormModel;
+
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 import java.awt.*;
@@ -13,7 +15,7 @@ import java.util.List;
  */
 public class DocsForm {
 
-	private JFrame frame;
+	private final JFrame frame;
 
 	private JPanel pnlMain;
 	private JPanel pnlRoot;
@@ -32,9 +34,15 @@ public class DocsForm {
 
 	public DocsForm(final JFrame frame) {
 		this.frame = frame;
+
+		cbDocType.setModel(new DefaultComboBoxModel(DocType.values()));
+		cbDirection.setModel(new DefaultComboBoxModel(Direction.values()));
+
 		btnCreateDoc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DocCreateForm docCreateForm = new DocCreateForm();
+
+				DocsFormModel currentDocsFormModel = new DocsFormModel((DocType) cbDocType.getSelectedItem(), (Direction) cbDirection.getSelectedItem());
+				DocCreateForm docCreateForm = new DocCreateForm(frame, currentDocsFormModel);
 
 				frame.getContentPane().removeAll();
 				frame.setContentPane(docCreateForm.getPnlMain());
@@ -55,12 +63,20 @@ public class DocsForm {
 
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
 				String[] value = new String[]{"Ритейлер", "Поставщик", "28/11/2018 10:45:22"};
 				values.add(value);
 				tabelDocsModel.fireTableDataChanged();
 			}
 		});
 
+
+	}
+
+	public DocsForm(final JFrame frame, DocsFormModel docsFormModel) {
+		this(frame);
+		cbDocType.setSelectedItem(docsFormModel.getDocType());
+		cbDirection.setSelectedItem(docsFormModel.getDirection());
 	}
 
 	private GridBagConstraints initGridBagConstraints() {
@@ -152,8 +168,6 @@ public class DocsForm {
 		pnlRoot.add(pnlDocType, gbc);
 		cbDocType = new JComboBox();
 		final DefaultComboBoxModel defaultComboBoxModel1 = new DefaultComboBoxModel();
-		defaultComboBoxModel1.addElement("ORDER");
-		defaultComboBoxModel1.addElement("ORDRSP");
 		cbDocType.setModel(defaultComboBoxModel1);
 		gbc = new GridBagConstraints();
 		gbc.gridx = 1;
@@ -166,9 +180,6 @@ public class DocsForm {
 		pnlDocType.add(cbDocType, gbc);
 		cbDirection = new JComboBox();
 		final DefaultComboBoxModel defaultComboBoxModel2 = new DefaultComboBoxModel();
-		defaultComboBoxModel2.addElement("ALL");
-		defaultComboBoxModel2.addElement("IN");
-		defaultComboBoxModel2.addElement("OUT");
 		cbDirection.setModel(defaultComboBoxModel2);
 		gbc = new GridBagConstraints();
 		gbc.gridx = 3;

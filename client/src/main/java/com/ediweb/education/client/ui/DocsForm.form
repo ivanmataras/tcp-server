@@ -66,10 +66,7 @@
                   <gridbag top="5" left="5" bottom="5" right="5" weightx="1.0" weighty="1.0"/>
                 </constraints>
                 <properties>
-                  <model>
-                    <item value="ORDER"/>
-                    <item value="ORDRSP"/>
-                  </model>
+                  <model/>
                 </properties>
               </component>
               <component id="47936" class="javax.swing.JComboBox" binding="cbDirection">
@@ -78,11 +75,7 @@
                   <gridbag top="5" left="5" bottom="5" right="5" weightx="1.0" weighty="1.0"/>
                 </constraints>
                 <properties>
-                  <model>
-                    <item value="ALL"/>
-                    <item value="IN"/>
-                    <item value="OUT"/>
-                  </model>
+                  <model/>
                 </properties>
               </component>
               <component id="2ac4d" class="javax.swing.JLabel" binding="lblDocType">
