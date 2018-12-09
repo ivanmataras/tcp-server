@@ -14,7 +14,7 @@ public class RoleDAO implements DAO<Role> {
 
     private static final String SQL_SELECT_ALL_ROLES = "SELECT id, name, full_name FROM roles";
     private static final String SQL_DELETE_ALL_ROLES = "DELETE FROM roles";
-    private static final String SQL_SELECT_ROLE_BY_ID = "SELECT id, name, full_name  FROM roles WHERE id = ?";
+    private static final String SQL_SELECT_ROLE_BY_ID = "SELECT id, name, full_name FROM roles WHERE id = ?";
     private static final String SQL_SELECT_ROLE = "SELECT id, name, full_name  FROM roles WHERE id = ?";
     private static final String SQL_INSERT_ROLE = "INSERT INTO roles (name, full_name) VALUES(?, ?)";
     private static final String SQL_UPDATE_ROLE = "UPDATE roles SET name = ?, full_name = ? WHERE id = ?";

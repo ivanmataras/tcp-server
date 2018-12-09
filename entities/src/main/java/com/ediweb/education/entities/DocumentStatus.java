@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class DocumentStatus implements Entity, Serializable, Cloneable {
 
     private int id;
-    private String type;
+    private String status;
 
 
     public DocumentStatus() {
@@ -22,12 +22,12 @@ public class DocumentStatus implements Entity, Serializable, Cloneable {
         this.id = id;
     }
 
-    public String getType() {
-        return type;
+    public String getStatus() {
+        return status;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
 }

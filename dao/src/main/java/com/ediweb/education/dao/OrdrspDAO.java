@@ -148,7 +148,7 @@ public class OrdrspDAO implements DAO<Ordrsp> {
     public void update(Ordrsp ordrsp) {
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement(SQL_INSERT_DOCUMENT);
+            statement = connection.prepareStatement(SQL_UPDATE_DOCUMENT);
             statement.setInt(1, ordrsp.getNumber());
             statement.setTimestamp(2, Timestamp.valueOf(ordrsp.getDate().atStartOfDay()));
             statement.setInt(3, DocumentTypeId.ORDRSP.getDocumentTypeId());
