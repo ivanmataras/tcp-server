@@ -1,4 +1,4 @@
-package com.ediweb.education.entities;
+package com.ediweb.education.protocol;
 
 import java.io.Serializable;
 import java.time.LocalDate;

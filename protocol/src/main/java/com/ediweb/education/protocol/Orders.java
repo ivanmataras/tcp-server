@@ -1,9 +1,9 @@
-package com.ediweb.education.entities;
+package com.ediweb.education.protocol;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Ordrsp implements Document, Entity, Serializable, Cloneable {
+public class Orders implements Document, Entity, Serializable, Cloneable {
 
     private int id;
     private int number;
@@ -14,7 +14,7 @@ public class Ordrsp implements Document, Entity, Serializable, Cloneable {
     private int receiverId;
     private String fileName;
 
-    public Ordrsp() {
+    public Orders() {
 
     }
 
@@ -97,4 +97,5 @@ public class Ordrsp implements Document, Entity, Serializable, Cloneable {
     public void setFileName(String fileName) {
         this.fileName = fileName;
     }
+
 }
