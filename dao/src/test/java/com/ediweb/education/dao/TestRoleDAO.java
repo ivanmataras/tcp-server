@@ -14,51 +14,65 @@ public class TestRoleDAO {
     private static final Logger log = Logger.getLogger(TestRoleDAO.class.getName());
 
     private Connection connection;
+    private DAO<Role> roleDAO;
 
-    @Test @Ignore
+    @Test @Before
     public void testOpenConnection() throws SQLException {
         connection = ConnectionPool.getConnection();
-        //Assert.assertNotNull(connection);
-        //Assert.assertTrue(connection.isValid(0));
+        Assert.assertTrue(connection.isValid(0));
+    }
+
+    @Test @Before
+    public void testCreateRoleDAO() throws SQLException {
+        roleDAO = new RoleDAO(connection);
+        Assert.assertNotNull(roleDAO);
     }
 
     @Test
     public void testCreateRole() {
-        Connection connection = null;
+/*        Connection connection = null;
         try {
             connection = ConnectionPool.getConnection();
         } catch (SQLException sqlException) {
             if (log.isLoggable(Level.SEVERE)) log.severe(sqlException.getMessage());
-        }
-        Role role = new Role();
+        }*/
+
+        roleDAO = new RoleDAO(connection);
+
+        Role role1 = new Role();
+        //role1.setId();
+        role1.setName("Admin");
+        role1.setFullName("Admin user");
+        roleDAO.create(role1);
+
+        Role role2 = new Role();
         //role.setId();
-        role.setName("User");
-        role.setFullName("Client user");
-        DAO<Role> roleDAO = new RoleDAO(connection);
-        roleDAO.create(role);
+        role2.setName("User");
+        role2.setFullName("Client user");
+        roleDAO.create(role2);
+
     }
 
-    @Test
+    @Test @Ignore
     public void testFindRole() {
 
     }
 
-    @Test
+    @Test @Ignore
     public void testUpdateRole() {
 
     }
 
-    @Test
+    @Test @Ignore
     public void testDeleteRole() {
-
+        roleDAO.delete(1);
+        roleDAO.delete(2);
     }
 
-    @Test @After @Ignore
+    @Test @After
     public void testCloseConnection() throws SQLException {
-        connection = ConnectionPool.getConnection();
         connection.close();
         Assert.assertFalse(connection.isValid(0));
-        Assert.assertNull(connection);
     }
 
 }
