@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<user>
+    <FullName>Ivan Mataras</FullName>
+    <Id>1</Id>
+    <Name>Ivan</Name>
+    <OrganizationId>1</OrganizationId>
+    <Password>12345</Password>
+    <RoleId>1</RoleId>
+</user>
