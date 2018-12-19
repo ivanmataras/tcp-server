@@ -1,7 +1,10 @@
 package com.ediweb.education.protocol;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
+@XmlRootElement(name = "User")
 public class User implements Entity, Serializable, Cloneable {
 
     private int id;
@@ -16,6 +19,7 @@ public class User implements Entity, Serializable, Cloneable {
     }
 
     @Override
+    @XmlElement(name = "Id")
     public int getId() {
         return id;
     }
@@ -25,6 +29,7 @@ public class User implements Entity, Serializable, Cloneable {
         this.id = id;
     }
 
+    @XmlElement(name = "Name")
     public String getName() {
         return name;
     }
@@ -33,6 +38,7 @@ public class User implements Entity, Serializable, Cloneable {
         this.name = name;
     }
 
+    @XmlElement(name = "FullName")
     public String getFullName() {
         return fullName;
     }
@@ -41,6 +47,7 @@ public class User implements Entity, Serializable, Cloneable {
         this.fullName = fullName;
     }
 
+    @XmlElement(name = "OrganizationId")
     public int getOrganizationId() {
         return organizationId;
     }
@@ -49,6 +56,7 @@ public class User implements Entity, Serializable, Cloneable {
         this.organizationId = organizationId;
     }
 
+    @XmlElement(name = "RoleId")
     public int getRoleId() {
         return roleId;
     }
@@ -57,6 +65,7 @@ public class User implements Entity, Serializable, Cloneable {
         this.roleId = roleId;
     }
 
+    @XmlElement(name = "Password")
     public String getPassword() {
         return password;
     }

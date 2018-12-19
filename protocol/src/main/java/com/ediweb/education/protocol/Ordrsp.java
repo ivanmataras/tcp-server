@@ -1,8 +1,11 @@
 package com.ediweb.education.protocol;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+@XmlRootElement(name = "Ordrsp")
 public class Ordrsp implements Document, Entity, Serializable, Cloneable {
 
     private int id;
@@ -19,6 +22,7 @@ public class Ordrsp implements Document, Entity, Serializable, Cloneable {
     }
 
     @Override
+    @XmlElement(name = "Id")
     public int getId() {
         return id;
     }
@@ -29,6 +33,7 @@ public class Ordrsp implements Document, Entity, Serializable, Cloneable {
     }
 
     @Override
+    @XmlElement(name = "Number")
     public int getNumber() {
         return number;
     }
@@ -39,6 +44,7 @@ public class Ordrsp implements Document, Entity, Serializable, Cloneable {
     }
 
     @Override
+    @XmlElement(name = "Date")
     public LocalDate getDate() {
         return date;
     }
@@ -49,6 +55,7 @@ public class Ordrsp implements Document, Entity, Serializable, Cloneable {
     }
 
     @Override
+    @XmlElement(name = "TypeId")
     public int getTypeId() {
         return typeId;
     }
@@ -59,6 +66,7 @@ public class Ordrsp implements Document, Entity, Serializable, Cloneable {
     }
 
     @Override
+    @XmlElement(name = "StatusId")
     public int getStatusId() {
         return statusId;
     }
@@ -69,6 +77,7 @@ public class Ordrsp implements Document, Entity, Serializable, Cloneable {
     }
 
     @Override
+    @XmlElement(name = "SenderId")
     public int getSenderId() {
         return senderId;
     }
@@ -79,6 +88,7 @@ public class Ordrsp implements Document, Entity, Serializable, Cloneable {
     }
 
     @Override
+    @XmlElement(name = "ReceiverId")
     public int getReceiverId() {
         return receiverId;
     }
@@ -89,6 +99,7 @@ public class Ordrsp implements Document, Entity, Serializable, Cloneable {
     }
 
     @Override
+    @XmlElement(name = "FileName")
     public String getFileName() {
         return fileName;
     }
