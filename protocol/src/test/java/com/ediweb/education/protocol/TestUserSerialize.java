@@ -46,8 +46,8 @@ public class TestUserSerialize {
     @Ignore
     public void testInitializeUserXml() {
 
-        String filePath = getClass().getResource("/user.xml").getPath();
-        InputStream xmlFile = getClass().getResourceAsStream("/user.xml");
+        String filePath = getClass().getResource("/User.xml").getPath();
+        InputStream xmlFile = getClass().getResourceAsStream("/User.xml");
 
 /*        int b;
         try {

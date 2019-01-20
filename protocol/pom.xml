@@ -44,6 +44,32 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M3</version>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxb2-maven-plugin</artifactId>
+                <version>2.4</version>
+                <executions>
+                    <execution>
+                        <id>xjc</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <!-- Set the package of the generated code -->
+                    <packageName>com.example.myschema</packageName>
+                    <!-- Indicate that we should use DTD input instead of XSDs -->
+                    <!--<sourceType>dtd</sourceType>-->
+                    <!-- Define the directory where we should find the DTD files -->
+<!--                    <sources>
+                        <source>${basedir}/src/main/resources/xsd</source>
+                    </sources>-->
+                    <sources>
+                        <source>${basedir}/src/test/resources/xsd/</source>
+                    </sources>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
