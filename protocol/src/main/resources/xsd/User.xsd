@@ -4,11 +4,30 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="Id" type="xs:int"/>
-                <xs:element name="Name" type="xs:string"/>
-                <xs:element name="FullName" type="xs:string"/>
+                <xs:element name="Name">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="32"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="FullName">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="32"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
                 <xs:element name="OrganizationId" type="xs:int"/>
                 <xs:element name="RoleId" type="xs:int"/>
-                <xs:element name="Password" type="xs:string"/>
+                <xs:element name="Password">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="8"/>
+                            <xs:minLength value="4"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
             </xs:sequence>
         </xs:complexType>
     </xs:element>

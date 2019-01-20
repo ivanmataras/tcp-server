@@ -3,20 +3,81 @@
     <xs:element name="Message">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="Header">
+                <xs:element name="Header" minOccurs="1">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="Protocol-Type" type="xs:string"/>
-                            <xs:element name="Protocol-Version" type="xs:int"/>
-                            <xs:element name="Method" type="xs:string"/>
-                            <xs:element name="URI" type="xs:string"/>
-                            <xs:element name="Status-Code" type="xs:int"/>
+                            <xs:element name="Protocol-Type">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="SXBP"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Protocol-Version">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:int">
+                                        <xs:minInclusive value="1"/>
+                                        <xs:maxInclusive value="2"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Method">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="CONNECT"/>
+                                        <xs:enumeration value="FIND"/>
+                                        <xs:enumeration value="CREATE"/>
+                                        <xs:enumeration value="UPDATE"/>
+                                        <xs:enumeration value="DELETE"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="URI">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="256"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Status-Code">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:int">
+                                        <xs:minInclusive value="1"/>
+                                        <xs:maxInclusive value="1000"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
                             <xs:element name="Reason-Phrase" type="xs:string"/>
                             <xs:element name="Server" type="xs:string"/>
-                            <xs:element name="Content-Encoding" type="xs:string"/>
-                            <xs:element name="Content-Language" type="xs:string"/>
-                            <xs:element name="Content-Type" type="xs:string"/>
-                            <xs:element name="User-Agent" type="xs:string"/>
+                            <xs:element name="Content-Encoding">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="UTF-8"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Content-Language">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="EN"/>
+                                        <xs:enumeration value="RU"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Content-Type">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="text/xml"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="User-Agent">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="SSC"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
@@ -26,10 +87,49 @@
                             <xs:element name="Content">
                                 <xs:complexType>
                                     <xs:sequence>
-                                        <xs:element name="Check-Sum-Type" type="xs:string"/>
-                                        <xs:element name="Check-Sum" type="xs:string"/>
-                                        <xs:element name="Content-Path" type="xs:string"/>
-                                        <xs:element name="File-Name" type="xs:string"/>
+                                        <xs:sequence>
+                                            <xs:element name="Documents">
+                                                <xs:complexType>
+                                                    <xs:sequence>
+                                                        <xs:element name="Document" maxOccurs="unbounded">
+                                                            <xs:complexType>
+                                                                <xs:sequence>
+                                                                    <xs:element name="File-Name">
+                                                                        <xs:simpleType>
+                                                                            <xs:restriction base="xs:string">
+                                                                                <xs:maxLength value="256"/>
+                                                                            </xs:restriction>
+                                                                        </xs:simpleType>
+                                                                    </xs:element>
+                                                                    <xs:element name="Content-Path">
+                                                                        <xs:simpleType>
+                                                                            <xs:restriction base="xs:string">
+                                                                                <xs:maxLength value="256"/>
+                                                                            </xs:restriction>
+                                                                        </xs:simpleType>
+                                                                    </xs:element>
+                                                                    <xs:element name="Check-Sum">
+                                                                        <xs:simpleType>
+                                                                            <xs:restriction base="xs:string">
+                                                                                <xs:minLength value="64"/>
+                                                                                <xs:maxLength value="64"/>
+                                                                            </xs:restriction>
+                                                                        </xs:simpleType>
+                                                                    </xs:element>
+                                                                    <xs:element name="Check-Sum-Type">
+                                                                        <xs:simpleType>
+                                                                            <xs:restriction base="xs:string">
+                                                                                <xs:enumeration value="SHA-256"/>
+                                                                            </xs:restriction>
+                                                                        </xs:simpleType>
+                                                                    </xs:element>
+                                                                </xs:sequence>
+                                                            </xs:complexType>
+                                                        </xs:element>
+                                                    </xs:sequence>
+                                                </xs:complexType>
+                                            </xs:element>
+                                        </xs:sequence>
                                     </xs:sequence>
                                 </xs:complexType>
                             </xs:element>
