@@ -24,6 +24,7 @@ public class TestUserSerialize {
     private static final Logger log = Logger.getLogger(User.class.getName());
 
     private User user;
+    private User newUser;
     private ByteArrayOutputStream userXml;
     //private ByteArrayInputStream xmlUser;
     private byte[] xmlUser;
@@ -119,7 +120,7 @@ public class TestUserSerialize {
             SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
             Schema userSchema = schemaFactory.newSchema(new File(xsdFile));
             jaxbUnmarshaller.setSchema(userSchema);
-            User user = (User) jaxbUnmarshaller.unmarshal(new File(xmlFile));
+            newUser = (User) jaxbUnmarshaller.unmarshal(new File(xmlFile));
         } catch (JAXBException | SAXException exception) {
             if (log.isLoggable(Level.SEVERE)) log.severe(exception.getMessage());
         }
