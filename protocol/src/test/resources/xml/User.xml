@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<user>
-    <FullName>Ivan Mataras</FullName>
+<User>
     <Id>1</Id>
     <Name>Ivan</Name>
+    <FullName>Ivan Mataras</FullName>
     <OrganizationId>1</OrganizationId>
-    <Password>12345</Password>
     <RoleId>1</RoleId>
-</user>
+    <Password>12345</Password>
+</User>
