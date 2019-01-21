@@ -10,7 +10,20 @@
                 <xs:element name="StatusId" type="xs:int"/>
                 <xs:element name="SenderId" type="xs:int"/>
                 <xs:element name="ReceiverId" type="xs:int"/>
-                <xs:element name="FileName" type="xs:string"/>
+                <xs:element name="FileName">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="256"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="FilePath">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="256"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
             </xs:sequence>
         </xs:complexType>
     </xs:element>

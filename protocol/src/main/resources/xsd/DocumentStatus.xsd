@@ -4,7 +4,13 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="Id" type="xs:int"/>
-                <xs:element name="Status" type="xs:string"/>
+                <xs:element name="Status">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="32"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
