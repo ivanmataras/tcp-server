@@ -1,7 +1,6 @@
 package com.ediweb.education.protocol;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.xml.sax.SAXException;
 
@@ -12,7 +11,6 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.InputStream;
@@ -25,36 +23,37 @@ public class TestUserSerialize {
 
     private User user;
     private User newUser;
-    private ByteArrayOutputStream userXml;
-    //private ByteArrayInputStream xmlUser;
-    private byte[] xmlUser;
-    private User userFromFile;
-    private String filePath;
+    private ByteArrayOutputStream userXmlFile;
 
-    private String xmlFile;
-    private String xsdFile;
-    private JAXBContext jaxbContext;
+    private String xmlFilePath;
+    private String xsdFilePath;
+    private InputStream xmlFile;
+    private InputStream xsdFile;
+    private JAXBContext context;
 
     @Test
     @Before
-    public void TestInitializeJAXBContext() {
-
-        xmlFile = getClass().getResource("/xml/User.xml").getPath();
-        xsdFile = getClass().getResource("/xsd/User.xsd").getPath();
-
-        try {
-            jaxbContext = JAXBContext.newInstance(User.class);
-        } catch (JAXBException jaxbException) {
-            if (log.isLoggable(Level.SEVERE)) log.severe(jaxbException.getMessage());
-        }
-
+    public void TestInitializeResources() {
+        xmlFilePath = getClass().getResource("/xml/User.xml").getPath();
+        xsdFilePath = getClass().getResource("/xsd/User.xsd").getPath();
+        xmlFile = getClass().getResourceAsStream("/xml/User.xml");
+        xsdFile = getClass().getResourceAsStream("/xml/User.xsd");
+        userXmlFile = new ByteArrayOutputStream(1024);
     }
 
     @Test
     @Before
-    @Ignore
-    public void TestInitializeUser() {
+    public void TestInitializeJAXBContext() {
+        try {
+            context = JAXBContext.newInstance(User.class);
+        } catch (JAXBException jaxbException) {
+            if (log.isLoggable(Level.SEVERE)) log.severe(jaxbException.getMessage());
+        }
+    }
 
+    @Test
+    @Before
+    public void TestInitializeUser() {
         user = new User();
         user.setId(1);
         user.setName("Ivan");
@@ -62,82 +61,30 @@ public class TestUserSerialize {
         user.setOrganizationId(1);
         user.setRoleId(1);
         user.setPassword("1234");
-
-        userXml = new ByteArrayOutputStream(1024);
-
     }
 
     @Test
-    @Before
-    @Ignore
-    public void TestInitializeUserXml() {
-
-        String filePath = getClass().getResource("/xml/User.xml").getPath();
-        InputStream xmlFile = getClass().getResourceAsStream("/xml/User.xml");
-
-/*        int b;
+    public void TestMarshallUserFromObjectToXmlWithXSD() {
         try {
-            while ((b = xmlFile.read()) != -1) {
-                userXml.write(b);
-            }
-        } catch (IOException ioException) {
-            if (log.isLoggable(Level.SEVERE)) log.severe(ioException.getMessage());
-        }*/
-    }
-
-    @Test
-    @Ignore
-    public void TestUserFromObjectToXml() {
-        try {
-            JAXBContext context = JAXBContext.newInstance(User.class);
             Marshaller marshaller = context.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-            //marshaller.marshal(user, new File(filePath));
-            marshaller.marshal(user, userXml);
-            xmlUser = userXml.toByteArray();
-        } catch (JAXBException jaxbException) {
-            if (log.isLoggable(Level.SEVERE)) log.severe(jaxbException.getMessage());
-        }
-    }
-
-    @Test
-    @Ignore
-    public void TestUserFromXmlToObject() {
-        try {
-            JAXBContext jaxbContext = JAXBContext.newInstance(User.class);
-            Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-            userFromFile = (User) unmarshaller.unmarshal(new ByteArrayInputStream(xmlUser));
-        } catch (JAXBException jaxbException) {
-            if (log.isLoggable(Level.SEVERE)) log.severe(jaxbException.getMessage());
-        }
-    }
-
-    @Test
-    public void TestJaxbXmlFileToUserObject() {
-
-        try {
-            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
             SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-            Schema userSchema = schemaFactory.newSchema(new File(xsdFile));
-            jaxbUnmarshaller.setSchema(userSchema);
-            newUser = (User) jaxbUnmarshaller.unmarshal(new File(xmlFile));
+            Schema userSchema = schemaFactory.newSchema(new File(xsdFilePath));
+            marshaller.setSchema(userSchema);
+            marshaller.marshal(user, userXmlFile);
         } catch (JAXBException | SAXException exception) {
             if (log.isLoggable(Level.SEVERE)) log.severe(exception.getMessage());
         }
-
     }
 
     @Test
-    public void TestJaxbUserFromObjectToXml() {
+    public void TestUnmarshallUserFromXmlToObjectWithXSD() {
         try {
-            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+            Unmarshaller unmarshaller = context.createUnmarshaller();
             SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-            Schema userSchema = schemaFactory.newSchema(new File(xsdFile));
-            jaxbMarshaller.setSchema(userSchema);
-            //marshaller.marshal(user, new File(filePath));
-            jaxbMarshaller.marshal(user, userXml);
-            xmlUser = userXml.toByteArray();
+            Schema userSchema = schemaFactory.newSchema(new File(xsdFilePath));
+            unmarshaller.setSchema(userSchema);
+            newUser = (User) unmarshaller.unmarshal(new File(xmlFilePath));
         } catch (JAXBException | SAXException exception) {
             if (log.isLoggable(Level.SEVERE)) log.severe(exception.getMessage());
         }
