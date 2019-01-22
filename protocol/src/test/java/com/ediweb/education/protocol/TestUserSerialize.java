@@ -37,7 +37,7 @@ public class TestUserSerialize {
         xmlFilePath = getClass().getResource("/xml/User.xml").getPath();
         xsdFilePath = getClass().getResource("/xsd/User.xsd").getPath();
         xmlFile = getClass().getResourceAsStream("/xml/User.xml");
-        xsdFile = getClass().getResourceAsStream("/xml/User.xsd");
+        xsdFile = getClass().getResourceAsStream("/xsd/User.xsd");
         userXmlFile = new ByteArrayOutputStream(1024);
     }
 
