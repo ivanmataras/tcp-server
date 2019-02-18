@@ -9,7 +9,6 @@ public class TcpClientBootstrapper {
 
     private static Logger log = Logger.getLogger(TcpClientBootstrapper.class.getName());
 
-
     public void bootstrap() {
 
         AuthorizationFrame frame = new AuthorizationFrame();

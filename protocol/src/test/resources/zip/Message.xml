@@ -1,0 +1,28 @@
+<Message>
+    <Header>
+        <Protocol-Type>SXBP</Protocol-Type>
+        <Protocol-Version>1</Protocol-Version>
+        <Method>CREATE</Method>
+        <URI>/users/1/</URI>
+        <Status-Code>2</Status-Code>
+        <Reason-Phrase>Created</Reason-Phrase>
+        <Server>localhost</Server>
+        <Content-Encoding>UTF-8</Content-Encoding>
+        <Content-Language>EN</Content-Language>
+        <Content-Type>text/xml</Content-Type>
+        <User-Agent>SSC</User-Agent>
+    </Header>
+    <Body>
+        <Content>
+            <Documents>
+                <!--1 or more repetitions:-->
+                <Document>
+                    <File-Name>User.xml</File-Name>
+                    <Content-Path></Content-Path>
+                    <Check-Sum>4f7e66cc7305ff00abc46cb1a4df059ad2fa2a2e8eecabd30c9e307360ce70f5</Check-Sum>
+                    <Check-Sum-Type>SHA-256</Check-Sum-Type>
+                </Document>
+            </Documents>
+        </Content>
+    </Body>
+</Message>

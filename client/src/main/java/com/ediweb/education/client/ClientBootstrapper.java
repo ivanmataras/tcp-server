@@ -1,11 +1,10 @@
 package com.ediweb.education.client;
 
-import com.ediweb.education.client.ui.ClientFrame;
-import com.ediweb.education.client.ui.DocsForm;
-
-import javax.swing.*;
+import java.util.logging.Logger;
 
 public class ClientBootstrapper {
+
+    private static Logger log = Logger.getLogger(ClientBootstrapper.class.getName());
 
     public static void main(String[] args) {
         try {
