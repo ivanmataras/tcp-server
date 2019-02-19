@@ -14,7 +14,6 @@ public class TcpServerBootstrapper implements Bootstrapper {
     private static final Logger log = Logger.getLogger(TcpServerBootstrapper.class.getName());
 
     private final CountDownLatch latch = new CountDownLatch(1);
-
     private static ExecutorService executeIt = Executors.newFixedThreadPool(2);
 
     void bootstrap() {
@@ -38,7 +37,6 @@ public class TcpServerBootstrapper implements Bootstrapper {
 
     }
 
-
     void testBootstrap() {
         try (ServerSocket server = new ServerSocket(getPort())) {
 
@@ -58,7 +56,6 @@ public class TcpServerBootstrapper implements Bootstrapper {
         }
     }
 
-
     private int getPort() throws Exception {
         try {
             Properties props = new Properties();
@@ -70,6 +67,5 @@ public class TcpServerBootstrapper implements Bootstrapper {
             throw new Exception("Config file not found!");
         }
     }
-
 
 }

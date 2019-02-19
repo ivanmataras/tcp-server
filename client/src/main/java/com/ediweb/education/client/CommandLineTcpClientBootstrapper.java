@@ -10,6 +10,11 @@ public class CommandLineTcpClientBootstrapper implements Bootstrapper {
 
     public void bootstrap() {
         out.println("Command line TCP client started.");
+        waitForInput();
+    }
+
+    private void waitForInput() {
+
 
     }
 }

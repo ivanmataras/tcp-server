@@ -35,7 +35,7 @@ public class ClientHandler implements Runnable {
                 log.info("READ from clientDialog message - " + entry);
                 String answer;
 
-                Map<String, String> result = parceEntry(entry);
+                Map<String, String> result = parseEntry(entry);
                 if (checkAuthorization(result)) {
                     answer = "200";
                 } else {
@@ -57,8 +57,7 @@ public class ClientHandler implements Runnable {
 
     }
 
-
-    private Map<String, String> parceEntry(String entry) {
+    private Map<String, String> parseEntry(String entry) {
         Map<String, String> result = new HashMap<>();
         List<String> parceResult = new ArrayList<>();
 
@@ -84,7 +83,6 @@ public class ClientHandler implements Runnable {
         }
         return result;
     }
-
 
     private boolean checkAuthorization(Map<String, String> result) {
         String login = "admin";
