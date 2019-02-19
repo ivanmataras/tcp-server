@@ -5,7 +5,7 @@ import com.ediweb.education.client.ui.AuthorizationFrame;
 
 import java.util.logging.Logger;
 
-public class TcpClientBootstrapper {
+public class TcpClientBootstrapper implements Bootstrapper {
 
     private static Logger log = Logger.getLogger(TcpClientBootstrapper.class.getName());
 

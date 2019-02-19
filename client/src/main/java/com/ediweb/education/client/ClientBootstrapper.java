@@ -8,11 +8,11 @@ public class ClientBootstrapper {
 
     public static void main(String[] args) {
         try {
-            TcpClientBootstrapper bootstrapper = new TcpClientBootstrapper();
+            Bootstrapper bootstrapper = new CommandLineTcpClientBootstrapper();
             bootstrapper.bootstrap();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
+
 }
