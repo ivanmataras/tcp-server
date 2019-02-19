@@ -1,6 +1,4 @@
-package com.ediweb.education.client.ui;
-
-import jdk.nashorn.internal.runtime.JSONFunctions;
+package com.ediweb.education.client.gui.ui;
 
 import javax.swing.*;
 import java.io.DataInputStream;

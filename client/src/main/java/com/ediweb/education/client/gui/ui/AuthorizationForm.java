@@ -1,6 +1,6 @@
-package com.ediweb.education.client.ui;
+package com.ediweb.education.client.gui.ui;
 
-import com.ediweb.education.client.SocketCreator;
+import com.ediweb.education.client.gui.SocketCreator;
 
 import javax.swing.*;
 import java.awt.*;

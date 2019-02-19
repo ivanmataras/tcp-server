@@ -1,6 +1,6 @@
-package com.ediweb.education.client.ui.models;
+package com.ediweb.education.client.gui.ui.models;
 
-import com.ediweb.education.client.ui.DocsForm;
+import com.ediweb.education.client.gui.ui.DocsForm;
 
 import javax.swing.*;
 

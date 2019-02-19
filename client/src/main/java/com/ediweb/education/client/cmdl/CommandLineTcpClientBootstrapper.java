@@ -1,4 +1,6 @@
-package com.ediweb.education.client;
+package com.ediweb.education.client.cmdl;
+
+import com.ediweb.education.client.Bootstrapper;
 
 import java.util.logging.Logger;
 

@@ -1,4 +1,4 @@
-package com.ediweb.education.client.ui.models;
+package com.ediweb.education.client.gui.ui.models;
 
 public interface Form {
 

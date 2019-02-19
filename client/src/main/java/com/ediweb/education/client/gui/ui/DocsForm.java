@@ -1,6 +1,6 @@
-package com.ediweb.education.client.ui;
+package com.ediweb.education.client.gui.ui;
 
-import com.ediweb.education.client.ui.models.DocsFormModel;
+import com.ediweb.education.client.gui.ui.models.DocsFormModel;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;

@@ -1,4 +1,4 @@
-package com.ediweb.education.client.ui;
+package com.ediweb.education.client.gui.ui;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.List;

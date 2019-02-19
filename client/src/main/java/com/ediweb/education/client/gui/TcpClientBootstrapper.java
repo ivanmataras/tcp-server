@@ -1,7 +1,8 @@
-package com.ediweb.education.client;
+package com.ediweb.education.client.gui;
 
-import com.ediweb.education.client.ui.AuthorizationForm;
-import com.ediweb.education.client.ui.AuthorizationFrame;
+import com.ediweb.education.client.Bootstrapper;
+import com.ediweb.education.client.gui.ui.AuthorizationForm;
+import com.ediweb.education.client.gui.ui.AuthorizationFrame;
 
 import java.util.logging.Logger;
 

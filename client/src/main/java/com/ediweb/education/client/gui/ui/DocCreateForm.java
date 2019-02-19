@@ -1,7 +1,7 @@
-package com.ediweb.education.client.ui;
+package com.ediweb.education.client.gui.ui;
 
-import com.ediweb.education.client.ui.models.FactoryMainPnl;
-import com.ediweb.education.client.ui.models.Form;
+import com.ediweb.education.client.gui.ui.models.FactoryMainPnl;
+import com.ediweb.education.client.gui.ui.models.Form;
 
 import javax.swing.*;
 import java.awt.*;

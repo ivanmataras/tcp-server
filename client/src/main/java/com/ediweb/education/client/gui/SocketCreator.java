@@ -1,4 +1,4 @@
-package com.ediweb.education.client;
+package com.ediweb.education.client.gui;
 
 import java.io.IOException;
 import java.net.Socket;

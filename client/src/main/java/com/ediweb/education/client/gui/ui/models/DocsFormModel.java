@@ -1,7 +1,7 @@
-package com.ediweb.education.client.ui.models;
+package com.ediweb.education.client.gui.ui.models;
 
-import com.ediweb.education.client.ui.Direction;
-import com.ediweb.education.client.ui.DocType;
+import com.ediweb.education.client.gui.ui.Direction;
+import com.ediweb.education.client.gui.ui.DocType;
 
 public class DocsFormModel implements Form {
 	
