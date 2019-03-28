@@ -93,6 +93,24 @@
                                 <goal>clean</goal>
                             </goals>
                         </execution>
+                        <execution>
+                            <id>clean-release</id>
+                            <phase>clean</phase>
+                            <goals>
+                                <goal>clean</goal>
+                            </goals>
+                            <configuration>
+                                <filesets>
+                                    <fileset>
+                                        <directory>./release/</directory>
+                                        <includes>
+                                            <include>**/*</include>
+                                        </includes>
+                                        <followSymlinks>false</followSymlinks>
+                                    </fileset>
+                                </filesets>
+                            </configuration>
+                        </execution>
                     </executions>
                 </plugin>
                 <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
