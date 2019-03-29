@@ -72,7 +72,7 @@ public class RouteDAO implements DAO<Route> {
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement(SQL_SELECT_ROUTE_BY_ID);
-            statement.setInt(1, route.getId());
+            statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 route = new Route();
