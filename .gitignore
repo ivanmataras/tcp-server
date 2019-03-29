@@ -83,6 +83,3 @@ dao/target
 entities/target
 protocol/target
 server/target
-
-# Release target directories
-release/
