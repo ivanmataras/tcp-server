@@ -17,7 +17,7 @@ public class ServerConfigurationManager {
     }
 
     public static Integer getPropertyAsInteger(String key) {
-        return Integer.parseInt(resourceBundle.getString(key));
+        return Integer.valueOf(resourceBundle.getString(key));
     }
 
     public static int getPropertyAsInt(String key) {
