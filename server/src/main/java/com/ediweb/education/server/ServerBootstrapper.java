@@ -8,10 +8,13 @@ public class ServerBootstrapper {
     private static final Logger log = Logger.getLogger(ServerBootstrapper.class.getName());
 
     public static void main(String[] args) {
+        if (log.isLoggable(Level.INFO)) {
+            log.info("ServerBootstrapper has started.");
+        }
         TcpServerBootstrapper tcpServerBootstrapper = new TcpServerBootstrapper();
         tcpServerBootstrapper.bootstrap();
         if (log.isLoggable(Level.INFO)) {
-            log.info("Server has stoped.");
+            log.info("ServerBootstrapper has stopped.");
         }
     }
 

@@ -15,6 +15,10 @@ public class TcpServerBootstrapper implements Bootstrapper {
 
     public void bootstrap() {
 
+        if (log.isLoggable(Level.INFO)) {
+            log.info("TcpServerBootstrapper has started.");
+        }
+
         TcpServer tcpServer = new TcpServer(latch);
         service.submit(tcpServer);
 
@@ -29,8 +33,12 @@ public class TcpServerBootstrapper implements Bootstrapper {
         if (!service.isShutdown()) {
             service.shutdown();
             if (log.isLoggable(Level.INFO)) {
-                log.info("Main executors service has shutted down.");
+                log.info("TcpServerBootstrapper executor service has shutted down.");
             }
+        }
+
+        if (log.isLoggable(Level.INFO)) {
+            log.info("TcpServerBootstrapper has stopped.");
         }
 
     }
