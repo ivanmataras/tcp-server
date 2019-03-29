@@ -2,7 +2,6 @@ package com.ediweb.education.server;
 
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Properties;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -42,8 +41,6 @@ public class TcpServerBootstrapper implements Bootstrapper {
 
             while (!server.isClosed()) {
 
-//                TODO: close server on message
-
                 Socket client = server.accept();
 
                 executeIt.execute(new ClientHandler(client));
@@ -56,16 +53,8 @@ public class TcpServerBootstrapper implements Bootstrapper {
         }
     }
 
-    private int getPort() throws Exception {
-        try {
-            Properties props = new Properties();
-            props.load(TcpServerBootstrapper.class.getResourceAsStream("/config.properties"));
-            String port = props.getProperty("server.port");
-            return Integer.parseInt(port);
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new Exception("Config file not found!");
-        }
+    private int getPort() {
+        return ServerConfigurationManager.getPropertyAsInt("server.port");
     }
 
 }
