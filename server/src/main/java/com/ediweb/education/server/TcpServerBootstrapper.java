@@ -16,7 +16,7 @@ public class TcpServerBootstrapper implements Bootstrapper {
     private final CountDownLatch latch = new CountDownLatch(1);
     private static ExecutorService executeIt = Executors.newFixedThreadPool(2);
 
-    void bootstrap() {
+    public void bootstrap() {
 
         ExecutorService service = Executors.newSingleThreadExecutor();
         TcpServer tcpServer = new TcpServer(latch);
