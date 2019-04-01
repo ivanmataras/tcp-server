@@ -13,8 +13,8 @@ public class ClientBootstrapper {
         if (log.isLoggable(Level.INFO)) {
             log.info("ClientBootstrapper has started.");
         }
-        Bootstrapper bootstrapper = new CommandLineTcpClientBootstrapper();
-        bootstrapper.bootstrap();
+        CommandLineTcpClientBootstrapper commandLineTcpClientBootstrapper = new CommandLineTcpClientBootstrapper();
+        commandLineTcpClientBootstrapper.bootstrap();
         if (log.isLoggable(Level.INFO)) {
             log.info("ClientBootstrapper has stopped.");
         }
