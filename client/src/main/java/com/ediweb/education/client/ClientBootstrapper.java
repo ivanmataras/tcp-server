@@ -1,7 +1,8 @@
 package com.ediweb.education.client;
 
-import com.ediweb.education.client.gui.TcpClientBootstrapper;
+import com.ediweb.education.client.cmdl.CommandLineTcpClientBootstrapper;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ClientBootstrapper {
@@ -9,11 +10,13 @@ public class ClientBootstrapper {
     private static Logger log = Logger.getLogger(ClientBootstrapper.class.getName());
 
     public static void main(String[] args) {
-        try {
-            Bootstrapper bootstrapper = new TcpClientBootstrapper();
-            bootstrapper.bootstrap();
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (log.isLoggable(Level.INFO)) {
+            log.info("ClientBootstrapper has started.");
+        }
+        Bootstrapper bootstrapper = new CommandLineTcpClientBootstrapper();
+        bootstrapper.bootstrap();
+        if (log.isLoggable(Level.INFO)) {
+            log.info("ClientBootstrapper has stopped.");
         }
     }
 
