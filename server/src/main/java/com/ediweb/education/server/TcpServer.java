@@ -6,11 +6,9 @@ import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static java.util.logging.Logger.getLogger;
-
 public class TcpServer implements Server, Runnable {
 
-    private static final Logger log = getLogger(TcpServer.class.getName());
+    private static final Logger log = Logger.getLogger(TcpServer.class.getName());
 
     private final CountDownLatch latch;
     private final CountDownLatch standbyHandlerLatch = new CountDownLatch(1);

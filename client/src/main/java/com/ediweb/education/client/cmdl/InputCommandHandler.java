@@ -5,11 +5,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static java.lang.System.out;
-import static java.util.logging.Logger.getLogger;
 
 public class InputCommandHandler implements Runnable {
 
-    private static final Logger log = getLogger(InputCommandHandler.class.getName());
+    private static final Logger log = Logger.getLogger(InputCommandHandler.class.getName());
 
     private final CountDownLatch inputCommandHandlerLatch;
 

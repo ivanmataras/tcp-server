@@ -6,11 +6,9 @@ import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static java.util.logging.Logger.getLogger;
-
 public class CommandLineTcpClient implements Runnable {
 
-    private static final Logger log = getLogger(CommandLineTcpClient.class.getName());
+    private static final Logger log = Logger.getLogger(CommandLineTcpClient.class.getName());
 
     private final CountDownLatch latch;
     private final CountDownLatch inputCommandHandlerLatch = new CountDownLatch(1);
