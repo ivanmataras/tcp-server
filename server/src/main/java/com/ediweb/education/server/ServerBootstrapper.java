@@ -11,8 +11,8 @@ public class ServerBootstrapper {
         if (log.isLoggable(Level.INFO)) {
             log.info("ServerBootstrapper has started.");
         }
-        TcpServerBootstrapper tcpServerBootstrapper = new TcpServerBootstrapper();
-        tcpServerBootstrapper.bootstrap();
+        Bootstrapper bootstrapper = new TcpServerBootstrapper();
+        bootstrapper.bootstrap();
         if (log.isLoggable(Level.INFO)) {
             log.info("ServerBootstrapper has stopped.");
         }
