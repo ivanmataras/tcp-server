@@ -1,6 +1,7 @@
 package com.ediweb.education.client.cmdl;
 
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.logging.Logger;
@@ -17,8 +18,8 @@ public class TimeCommandHandler implements Runnable {
 
     @Override
     public void run() {
-        clock.append(CR).append(LocalDateTime.now().format(formatter));
-        out.print(clock);
+        clock.append(CR).append(ZonedDateTime.now().format(formatter));
+        out.println(clock);
         clock.delete(0, clock.length());
     }
 
