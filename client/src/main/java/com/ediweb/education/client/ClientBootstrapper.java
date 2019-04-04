@@ -5,7 +5,7 @@ import com.ediweb.education.client.cmdl.CommandLineTcpClientBootstrapper;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class ClientBootstrapper {
+class ClientBootstrapper {
 
     private static final Logger log = Logger.getLogger(ClientBootstrapper.class.getName());
 

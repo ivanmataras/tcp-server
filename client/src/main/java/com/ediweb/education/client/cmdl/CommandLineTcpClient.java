@@ -6,55 +6,18 @@ import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class CommandLineTcpClient implements Runnable {
+class CommandLineTcpClient {
 
     private static final Logger log = Logger.getLogger(CommandLineTcpClient.class.getName());
 
-    private final CountDownLatch latch;
-    private final CountDownLatch inputCommandHandlerLatch = new CountDownLatch(1);
+    private static final InputCommandHandler inputCommandHandler = new InputCommandHandler();
 
-    private static ExecutorService commandLineTcpClientService;
+    public CommandLineTcpClient() {
 
-    public CommandLineTcpClient(CountDownLatch latch) {
-        this.latch = latch;
     }
 
-    @Override
-    public void run() {
-
-        if (log.isLoggable(Level.INFO)) {
-            log.info("CommandLineTcpClient has started.");
-        }
-
-        commandLineTcpClientService = Executors.newSingleThreadExecutor();
-        InputCommandHandler inputCommandHandler = new InputCommandHandler(inputCommandHandlerLatch);
-        commandLineTcpClientService.submit(inputCommandHandler);
-
-        try {
-            inputCommandHandlerLatch.await();
-        } catch (InterruptedException interruptedException) {
-            if (log.isLoggable(Level.SEVERE)) {
-                log.severe("Interrupted exception.");
-            }
-        }
-
-        if (!commandLineTcpClientService.isShutdown()) {
-            commandLineTcpClientService.shutdown();
-            if (log.isLoggable(Level.INFO)) {
-                log.info("CommandLineTcpClient executor service has shutted down.");
-            }
-        }
-
-        if (log.isLoggable(Level.INFO)) {
-            log.info("CommandLineTcpClient task has finished.");
-        }
-
-        if (log.isLoggable(Level.INFO)) {
-            log.info("CommandLineTcpClient has stopped.");
-        }
-
-        latch.countDown();
-
+    void start() {
+        inputCommandHandler.runShell();
     }
 
 }

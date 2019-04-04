@@ -10,16 +10,20 @@ import java.util.ResourceBundle;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static java.lang.System.out;
+import static java.lang.System.err;
 
-public class InputCommandHandler implements Runnable {
+class InputCommandHandler {
 
     private static final Logger log = Logger.getLogger(InputCommandHandler.class.getName());
 
     private static final ResourceBundle resourceBundle = ResourceBundle.getBundle("text", new Locale("en", "US"));
+
+    private static final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
     private static final Map<String, Runnable> commands = new HashMap<>();
 
@@ -29,43 +33,48 @@ public class InputCommandHandler implements Runnable {
 
     private static final ExecutorService commandExecutorService = Executors.newSingleThreadExecutor();
 
-    private final CountDownLatch inputCommandHandlerLatch;
-
-    public InputCommandHandler(CountDownLatch inputCommandHandlerLatch) {
-        this.inputCommandHandlerLatch = inputCommandHandlerLatch;
+    public InputCommandHandler() {
 
     }
 
-    @Override
-    public void run() {
-
+    void runShell() {
         out.println(resourceBundle.getString("client.interface.messages.greeting"));
         out.println(resourceBundle.getString("client.interface.messages.helpadvise"));
         out.println(resourceBundle.getString("client.interface.messages.commandadvise"));
 
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String command;
 
         try {
-
             do {
                 command = reader.readLine();
-                if (commands.containsKey(command))
-//                    commands.get(command).run();
+                if (commands.containsKey(command)) {
                     commandExecutorService.submit(commands.get(command));
+                }
             } while (!command.equals("exit"));
-
         } catch (IOException e) {
             if (log.isLoggable(Level.SEVERE)) {
                 log.severe(e.getMessage());
             }
         }
-
-        if (log.isLoggable(Level.INFO)) {
-            log.info("InputCommandHandler task has finished.");
-        }
-        inputCommandHandlerLatch.countDown();
-
+        shutdownAndAwaitTermination(commandExecutorService);
     }
 
+    private void shutdownAndAwaitTermination(ExecutorService commandExecutorService) {
+        commandExecutorService.shutdown();
+        try {
+            if (!commandExecutorService.awaitTermination(1, TimeUnit.SECONDS)) {
+                commandExecutorService.shutdownNow();
+                if (!commandExecutorService.awaitTermination(1, TimeUnit.SECONDS))
+                    if (log.isLoggable(Level.SEVERE)) {
+                        log.severe("CommandExecutorService did not terminate.");
+                    }
+            }
+        } catch (InterruptedException e) {
+            if (log.isLoggable(Level.SEVERE)) {
+                log.severe(e.getMessage());
+            }
+            commandExecutorService.shutdownNow();
+            Thread.currentThread().interrupt();
+        }
+    }
 }
