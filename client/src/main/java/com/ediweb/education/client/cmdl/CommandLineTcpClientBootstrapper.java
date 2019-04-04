@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 
 public class CommandLineTcpClientBootstrapper implements Bootstrapper {
 
-    private static Logger log = Logger.getLogger(CommandLineTcpClientBootstrapper.class.getName());
+    private static final Logger log = Logger.getLogger(CommandLineTcpClientBootstrapper.class.getName());
 
     private final CountDownLatch latch = new CountDownLatch(1);
     private static ExecutorService service = Executors.newSingleThreadExecutor();

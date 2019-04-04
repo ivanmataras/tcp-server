@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 
 public class ClientBootstrapper {
 
-    private static Logger log = Logger.getLogger(ClientBootstrapper.class.getName());
+    private static final Logger log = Logger.getLogger(ClientBootstrapper.class.getName());
 
     public static void main(String[] args) {
         if (log.isLoggable(Level.INFO)) {

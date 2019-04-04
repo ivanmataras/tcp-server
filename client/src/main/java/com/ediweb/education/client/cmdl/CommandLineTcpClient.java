@@ -26,7 +26,7 @@ public class CommandLineTcpClient implements Runnable {
             log.info("CommandLineTcpClient has started.");
         }
 
-        commandLineTcpClientService = Executors.newFixedThreadPool(2);
+        commandLineTcpClientService = Executors.newSingleThreadExecutor();
         InputCommandHandler inputCommandHandler = new InputCommandHandler(inputCommandHandlerLatch);
         commandLineTcpClientService.submit(inputCommandHandler);
 
