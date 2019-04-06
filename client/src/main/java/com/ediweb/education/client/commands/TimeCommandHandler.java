@@ -1,4 +1,4 @@
-package com.ediweb.education.client.cmdl;
+package com.ediweb.education.client.commands;
 
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
@@ -10,7 +10,7 @@ import static java.lang.System.out;
 
 public class TimeCommandHandler implements Runnable {
 
-    private static final Logger log = Logger.getLogger(InputCommandHandler.class.getName());
+    private static final Logger log = Logger.getLogger(TimeCommandHandler.class.getName());
 
     private final StringBuilder clock = new StringBuilder(32);
     private final char CR = '\r';

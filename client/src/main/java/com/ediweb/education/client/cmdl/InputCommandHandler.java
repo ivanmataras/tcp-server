@@ -1,5 +1,7 @@
 package com.ediweb.education.client.cmdl;
 
+import com.ediweb.education.client.commands.TimeCommandHandler;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
