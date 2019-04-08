@@ -1,6 +1,6 @@
 package com.ediweb.education.client.cmdl;
 
-import com.ediweb.education.client.commands.TimeCommandHandler;
+import com.ediweb.education.client.handlers.TimeCommandHandler;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,7 +9,6 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -17,7 +16,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static java.lang.System.out;
-import static java.lang.System.err;
 
 class InputCommandHandler {
 
