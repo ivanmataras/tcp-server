@@ -1,4 +1,4 @@
-package com.ediweb.education.server;
+package com.ediweb.education.server.handlers;
 
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
