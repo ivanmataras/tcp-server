@@ -1,5 +1,6 @@
 package com.ediweb.education.client.cmdl;
 
+import com.ediweb.education.client.handlers.TestConnectionHandler;
 import com.ediweb.education.client.handlers.TimeCommandHandler;
 
 import java.io.BufferedReader;
@@ -28,7 +29,13 @@ class InputCommandHandler {
     private static final Map<String, Runnable> commands = new HashMap<>();
 
     static {
+        /*commands.put("help", new TimeCommandHandler());*/
         commands.put("time", new TimeCommandHandler());
+        /*commands.put("connect", new TimeCommandHandler());*/
+        /*commands.put("disconnect", new TimeCommandHandler());*/
+        commands.put("test connection", new TestConnectionHandler());
+        /*commands.put("send", new TimeCommandHandler());*/
+        /*commands.put("receive", new TimeCommandHandler());*/
     }
 
     private static final ExecutorService commandExecutorService = Executors.newSingleThreadExecutor();
@@ -37,7 +44,7 @@ class InputCommandHandler {
 
     }
 
-    void runShell() {
+    void handle() {
         out.println(resourceBundle.getString("client.interface.messages.greeting"));
         out.println(resourceBundle.getString("client.interface.messages.helpadvise"));
         out.println(resourceBundle.getString("client.interface.messages.commandadvise"));
@@ -55,8 +62,9 @@ class InputCommandHandler {
             if (log.isLoggable(Level.SEVERE)) {
                 log.severe(e.getMessage());
             }
+        } finally {
+            shutdownAndAwaitTermination(commandExecutorService);
         }
-        shutdownAndAwaitTermination(commandExecutorService);
     }
 
     private void shutdownAndAwaitTermination(ExecutorService commandExecutorService) {

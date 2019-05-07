@@ -24,8 +24,6 @@ public class CheckConnectionHandler implements Runnable {
         } finally {
 
         }
-
-
     }
 
 }

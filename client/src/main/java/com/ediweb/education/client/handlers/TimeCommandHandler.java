@@ -15,6 +15,10 @@ public class TimeCommandHandler implements Runnable {
     private final char CR = '\r';
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss z", Locale.ENGLISH);
 
+    public TimeCommandHandler() {
+
+    }
+
     @Override
     public void run() {
         clock.append(CR).append(ZonedDateTime.now().format(formatter));
