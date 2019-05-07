@@ -1,61 +1,21 @@
 package com.ediweb.education.server;
 
-import com.ediweb.education.server.handlers.StandbyHandler;
+import com.ediweb.education.server.handlers.ConnectionHandler;
 
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class TcpServer implements Server, Runnable {
+public class TcpServer implements Server {
 
     private static final Logger log = Logger.getLogger(TcpServer.class.getName());
 
-    private final CountDownLatch latch;
-    private final CountDownLatch standbyHandlerLatch = new CountDownLatch(1);
+    private static final ConnectionHandler connectionHandler = new ConnectionHandler();
 
-    private static ExecutorService tcpServerService;
+    public TcpServer() {
 
-    public TcpServer(CountDownLatch latch) {
-        this.latch = latch;
     }
 
-    @Override
-    public void run() {
-
-        if (log.isLoggable(Level.INFO)) {
-            log.info("TcpServer has started.");
-        }
-
-        tcpServerService = Executors.newFixedThreadPool(2);
-        StandbyHandler standbyHandler = new StandbyHandler(standbyHandlerLatch);
-        tcpServerService.submit(standbyHandler);
-
-        try {
-            standbyHandlerLatch.await();
-        } catch (InterruptedException interruptedException) {
-            if (log.isLoggable(Level.SEVERE)) {
-                log.severe("Interrupted exception.");
-            }
-        }
-
-        if (!tcpServerService.isShutdown()) {
-            tcpServerService.shutdown();
-            if (log.isLoggable(Level.INFO)) {
-                log.info("TcpServer executor service has shutted down.");
-            }
-        }
-
-        if (log.isLoggable(Level.INFO)) {
-            log.info("TcpServer task has finished.");
-        }
-
-        if (log.isLoggable(Level.INFO)) {
-            log.info("TcpServer has stopped.");
-        }
-
-        latch.countDown();
+    void start() {
+        connectionHandler.handle();
     }
 
 }
