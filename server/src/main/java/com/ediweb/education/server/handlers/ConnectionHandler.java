@@ -29,6 +29,7 @@ public class ConnectionHandler {
     public void handle() {
 
         ServerSocket serverSocket = null;
+        //Socket socket = null;
 
         try {
             serverSocket = new ServerSocket(PORT);
@@ -48,20 +49,14 @@ public class ConnectionHandler {
 
                 semaphore.acquire();
 
-                try (ServerSocket socket = serverSocket) {
-                    tcpServerExecutorService.submit(new TestConnectionHandler(socket));
-                } catch (IOException e) {
-                    if (log.isLoggable(Level.SEVERE)) {
-                        log.severe(e.getMessage());
-                    }
-                } finally {
-                    semaphore.release();
-                }
+                tcpServerExecutorService.submit(new TestConnectionHandler(serverSocket, semaphore));
 
             } catch (InterruptedException e) {
                 if (log.isLoggable(Level.SEVERE)) {
                     log.severe(e.getMessage());
                 }
+            } finally {
+
             }
 
         }
