@@ -50,10 +50,14 @@ public class TestConnectionHandler implements Runnable {
                 bos.write(buffer);
                 bos.flush();
 
-                out.println("Received from server :" + " ");
+                out.print("Received from server :" + " ");
                 int c;
-                while ((c = bis.read()) != -1) {
+/*                while ((c = bis.read()) != -1) {
                     out.print((char) c);
+                }*/
+
+                while (bis.available() != 0) {
+                    out.print((char) bis.read());
                 }
 
             } catch (IOException e) {

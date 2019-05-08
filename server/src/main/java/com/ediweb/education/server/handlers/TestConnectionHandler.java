@@ -33,8 +33,12 @@ public class TestConnectionHandler implements Runnable {
 
                 out.print("Received from client :" + " ");
                 int c;
-                while ((c = bis.read()) != -1) {
+/*                while ((c = bis.read()) != -1) {
                     out.print((char) c);
+                }*/
+
+                while (bis.available() != 0) {
+                    out.print((char) bis.read());
                 }
 
                 String text = "Hello to client" + " " + "from server" + " " + socket.getLocalAddress() + " " + socket.getLocalPort();
