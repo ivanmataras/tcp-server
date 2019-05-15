@@ -64,7 +64,7 @@
     </modules>
 
     <properties>
-        <maven.version>3.6.0</maven.version>
+        <maven.version>3.6.1</maven.version>
         <jdk.version>1.8</jdk.version>
         <!--<maven.compiler.source>1.8</maven.compiler.source>-->
         <!--<maven.compiler.target>1.8</maven.compiler.target>-->
@@ -99,7 +99,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.8.0</version>
+                    <version>3.8.1</version>
                     <configuration>
                         <encoding>${project.build.sourceEncoding}</encoding>
                         <source>${jdk.version}</source>
@@ -129,7 +129,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jar-plugin</artifactId>
-                    <version>3.1.1</version>
+                    <version>3.1.2</version>
                 </plugin>
                 <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-resources-plugin -->
                 <plugin>
