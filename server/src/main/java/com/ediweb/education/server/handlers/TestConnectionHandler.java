@@ -32,6 +32,7 @@ public class TestConnectionHandler implements Runnable {
                  BufferedOutputStream bos = new BufferedOutputStream(socket.getOutputStream())) {
 
                 out.print("Received from client :" + " ");
+
                 int c;
 /*                while ((c = bis.read()) != -1) {
                     out.print((char) c);
@@ -41,10 +42,13 @@ public class TestConnectionHandler implements Runnable {
                     out.print((char) bis.read());
                 }
 
+                out.print(System.lineSeparator());
+
                 String text = "Hello to client" + " " + "from server" + " " + socket.getLocalAddress() + " " + socket.getLocalPort();
                 byte[] buffer = text.getBytes();
 
-                out.println("Send to client :" + " " + text);
+                out.print("Send to client :" + " " + text);
+                out.print(System.lineSeparator());
 
                 bos.write(buffer);
                 bos.flush();

@@ -45,12 +45,14 @@ public class TestConnectionHandler implements Runnable {
                 String text = "Hello to server" + " " + "from client" + " " + socket.getLocalAddress() + " " + socket.getLocalPort();
                 byte[] buffer = text.getBytes();
 
-                out.println("Send to server :" + " " + text);
+                out.print("Send to server :" + " " + text);
+                out.print(System.lineSeparator());
 
                 bos.write(buffer);
                 bos.flush();
 
                 out.print("Received from server :" + " ");
+
                 int c;
 /*                while ((c = bis.read()) != -1) {
                     out.print((char) c);
@@ -59,6 +61,8 @@ public class TestConnectionHandler implements Runnable {
                 while (bis.available() != 0) {
                     out.print((char) bis.read());
                 }
+
+                out.print(System.lineSeparator());
 
             } catch (IOException e) {
                 if (log.isLoggable(Level.SEVERE)) {
