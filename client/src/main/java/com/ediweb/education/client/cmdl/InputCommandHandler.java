@@ -29,13 +29,13 @@ class InputCommandHandler {
     private static final Map<String, Runnable> commands = new HashMap<>();
 
     static {
-        /*commands.put("help", new TimeCommandHandler());*/
+        /*commands.put("help", new HelpCommandHandler());*/
         commands.put("time", new TimeCommandHandler());
-        /*commands.put("connect", new TimeCommandHandler());*/
-        /*commands.put("disconnect", new TimeCommandHandler());*/
+        /*commands.put("connect", new ConnectCommandHandler());*/
+        /*commands.put("disconnect", new DisconnectCommandHandler());*/
         commands.put("test connection", new TestConnectionHandler());
-        /*commands.put("send", new TimeCommandHandler());*/
-        /*commands.put("receive", new TimeCommandHandler());*/
+        /*commands.put("send", new SendCommandHandler());*/
+        /*commands.put("receive", new ReceiveCommandHandler());*/
     }
 
     private static final ExecutorService commandExecutorService = Executors.newSingleThreadExecutor();
