@@ -55,6 +55,8 @@ class InputCommandHandler {
                 command = reader.readLine();
                 if (commands.containsKey(command)) {
                     commandExecutorService.submit(commands.get(command));
+                } else {
+                    out.println(resourceBundle.getString("client.interface.messages.commandnotexist"));
                 }
             } while (!command.equals("exit"));
         } catch (IOException e) {
