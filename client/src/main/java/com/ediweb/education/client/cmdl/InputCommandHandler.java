@@ -30,9 +30,9 @@ class InputCommandHandler {
     static {
         commands.put("help", new HelpCommandHandler());
         commands.put("time", new TimeCommandHandler());
+        commands.put("test connection", new TestConnectionHandler());
         commands.put("connect", new ConnectCommandHandler());
         commands.put("disconnect", new DisconnectCommandHandler());
-        commands.put("test connection", new TestConnectionHandler());
         commands.put("send", new SendCommandHandler());
         commands.put("receive", new ReceiveCommandHandler());
     }
