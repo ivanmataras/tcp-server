@@ -1,7 +1,6 @@
 package com.ediweb.education.client.cmdl;
 
-import com.ediweb.education.client.handlers.TestConnectionHandler;
-import com.ediweb.education.client.handlers.TimeCommandHandler;
+import com.ediweb.education.client.handlers.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -29,13 +28,13 @@ class InputCommandHandler {
     private static final Map<String, Runnable> commands = new HashMap<>();
 
     static {
-        /*commands.put("help", new HelpCommandHandler());*/
+        commands.put("help", new HelpCommandHandler());
         commands.put("time", new TimeCommandHandler());
-        /*commands.put("connect", new ConnectCommandHandler());*/
-        /*commands.put("disconnect", new DisconnectCommandHandler());*/
+        commands.put("connect", new ConnectCommandHandler());
+        commands.put("disconnect", new DisconnectCommandHandler());
         commands.put("test connection", new TestConnectionHandler());
-        /*commands.put("send", new SendCommandHandler());*/
-        /*commands.put("receive", new ReceiveCommandHandler());*/
+        commands.put("send", new SendCommandHandler());
+        commands.put("receive", new ReceiveCommandHandler());
     }
 
     private static final ExecutorService commandExecutorService = Executors.newSingleThreadExecutor();
