@@ -21,5 +21,6 @@ public class HelpCommandHandler implements Runnable {
         out.println(resourceBundle.getString("client.interface.commands.disconnect"));
         out.println(resourceBundle.getString("client.interface.commands.send"));
         out.println(resourceBundle.getString("client.interface.commands.receive"));
+        out.println(resourceBundle.getString("client.interface.commands.exit"));
     }
 }

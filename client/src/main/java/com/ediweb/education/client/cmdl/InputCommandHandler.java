@@ -35,6 +35,7 @@ class InputCommandHandler {
         commands.put("disconnect", new DisconnectCommandHandler());
         commands.put("send", new SendCommandHandler());
         commands.put("receive", new ReceiveCommandHandler());
+        commands.put("exit", new ExitCommandHandler());
     }
 
     private static final ExecutorService commandExecutorService = Executors.newSingleThreadExecutor();
@@ -58,7 +59,7 @@ class InputCommandHandler {
                 } else {
                     out.println(resourceBundle.getString("client.interface.messages.commandnotexist"));
                 }
-            } while (!command.equals("exit"));
+            } while (!command.equals(resourceBundle.getString("client.interface.commands.exit")));
         } catch (IOException e) {
             if (log.isLoggable(Level.SEVERE)) {
                 log.severe(e.getMessage());
