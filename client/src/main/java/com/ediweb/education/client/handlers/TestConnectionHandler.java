@@ -59,11 +59,6 @@ public class TestConnectionHandler implements Runnable {
 
                 out.print("Received from server :" + " ");
 
-/*                int c;
-                while ((c = bis.read()) != -1) {
-                    out.print((char) c);
-                }*/
-
                 while (true) {
                     if (bis.available() != 0) {
                         int c;
