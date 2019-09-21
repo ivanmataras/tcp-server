@@ -20,25 +20,34 @@ public class TestConnectionHandler implements Runnable {
 
     private static final ResourceBundle resourceBundle = ResourceBundle.getBundle("config");
 
+    private InetAddress inetAddress;
+
+    private int port;
+
     public TestConnectionHandler() {
 
+    }
+
+    public InetAddress getInetAddress() {
+        return inetAddress;
+    }
+
+    public void setInetAddress(InetAddress inetAddress) {
+        this.inetAddress = inetAddress;
+    }
+
+    public int getPort() {
+        return port;
+    }
+
+    public void setPort(int port) {
+        this.port = port;
     }
 
     @Override
     public void run() {
 
-        InetAddress inetAddress = null;
-        try {
-            inetAddress = InetAddress.getLocalHost();
-        } catch (UnknownHostException e) {
-            if (log.isLoggable(Level.SEVERE)) {
-                log.severe(e.getMessage());
-            }
-        }
-
-        Integer port = ClientConfigurationManager.getPropertyAsInteger("server.port");
-
-        try (Socket socket = new Socket(inetAddress.getHostAddress(), port)) {
+        try (Socket socket = new Socket(inetAddress, port)) {
             try (BufferedInputStream bis = new BufferedInputStream(socket.getInputStream());
                  BufferedOutputStream bos = new BufferedOutputStream(socket.getOutputStream())) {
 
