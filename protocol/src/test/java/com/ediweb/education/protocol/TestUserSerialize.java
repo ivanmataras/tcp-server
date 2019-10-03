@@ -21,8 +21,8 @@ class TestUserSerialize {
 
     private static final Logger log = Logger.getLogger(User.class.getName());
 
-    private User user;
-    private User newUser;
+    private static User user;
+    private static User newUser;
     private static ByteArrayOutputStream userXmlFile;
 
     private static String xmlFilePath;
