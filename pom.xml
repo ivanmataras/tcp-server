@@ -122,8 +122,9 @@
     <properties>
         <maven.version>3.6.2</maven.version>
         <jdk.version>13</jdk.version>
-        <!--<maven.compiler.source>1.8</maven.compiler.source>-->
-        <!--<maven.compiler.target>1.8</maven.compiler.target>-->
+        <!--        <maven.compiler.source>13</maven.compiler.source>-->
+        <!--        <maven.compiler.target>13</maven.compiler.target>-->
+        <maven.compiler.release>13</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
@@ -159,9 +160,9 @@
                     <version>3.8.1</version>
                     <configuration>
                         <encoding>${project.build.sourceEncoding}</encoding>
-                        <!--<source>${jdk.version}</source>-->
-                        <!--<target>${jdk.version}</target>-->
-                        <release>${jdk.version}</release>
+                        <!--                        <source>${maven.compiler.source}</source>-->
+                        <!--                        <target>${maven.compiler.target}</target>-->
+                        <release>${maven.compiler.release}</release>
                     </configuration>
                 </plugin>
                 <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-dependency-plugin -->
