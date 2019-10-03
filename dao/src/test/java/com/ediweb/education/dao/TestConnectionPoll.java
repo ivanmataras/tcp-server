@@ -1,30 +1,34 @@
 package com.ediweb.education.dao;
 
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Logger;
 
-public class TestConnectionPoll {
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+class TestConnectionPoll {
 
     private static final Logger log = Logger.getLogger(TestConnectionPoll.class.getName());
 
-    private Connection connection;
+    private static Connection connection;
 
-    @Test @Before
-    public void testOpenConnection() throws SQLException {
+    @Test
+    @BeforeAll
+    static void testOpenConnection() throws SQLException {
         connection = ConnectionPool.getConnection();
-        Assert.assertTrue(connection.isValid(0));
+        assertTrue(connection.isValid(0));
     }
 
-    @Test @After
-    public void testCloseConnection() throws SQLException {
+    @Test
+    @AfterAll
+    static void testCloseConnection() throws SQLException {
         connection.close();
-        Assert.assertFalse(connection.isValid(0));
+        assertFalse(connection.isValid(0));
     }
 
 }

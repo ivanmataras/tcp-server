@@ -1,7 +1,7 @@
 package com.ediweb.education.protocol;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.xml.sax.SAXException;
 
 import javax.xml.XMLConstants;
@@ -17,33 +17,33 @@ import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class TestUserSerialize {
+class TestUserSerialize {
 
     private static final Logger log = Logger.getLogger(User.class.getName());
 
     private User user;
     private User newUser;
-    private ByteArrayOutputStream userXmlFile;
+    private static ByteArrayOutputStream userXmlFile;
 
-    private String xmlFilePath;
-    private String xsdFilePath;
-    private InputStream xmlFile;
-    private InputStream xsdFile;
-    private JAXBContext context;
+    private static String xmlFilePath;
+    private static String xsdFilePath;
+    private static InputStream xmlFile;
+    private static InputStream xsdFile;
+    private static JAXBContext context;
 
     @Test
-    @Before
-    public void TestInitializeResources() {
-        xmlFilePath = getClass().getResource("/xml/User.xml").getPath();
-        xsdFilePath = getClass().getResource("/xsd/User.xsd").getPath();
-        xmlFile = getClass().getResourceAsStream("/xml/User.xml");
-        xsdFile = getClass().getResourceAsStream("/xsd/User.xsd");
+    @BeforeAll
+    static void TestInitializeResources() {
+        xmlFilePath = TestUserSerialize.class.getResource("/xml/User.xml").getPath();
+        xsdFilePath = TestUserSerialize.class.getResource("/xsd/User.xsd").getPath();
+        xmlFile = TestUserSerialize.class.getResourceAsStream("/xml/User.xml");
+        xsdFile = TestUserSerialize.class.getResourceAsStream("/xsd/User.xsd");
         userXmlFile = new ByteArrayOutputStream(1024);
     }
 
     @Test
-    @Before
-    public void TestInitializeJAXBContext() {
+    @BeforeAll
+    static void TestInitializeJAXBContext() {
         try {
             context = JAXBContext.newInstance(User.class);
         } catch (JAXBException jaxbException) {
@@ -52,8 +52,7 @@ public class TestUserSerialize {
     }
 
     @Test
-    @Before
-    public void TestInitializeUser() {
+    void TestInitializeUser() {
         user = new User();
         user.setId(1);
         user.setName("Ivan");
@@ -64,7 +63,7 @@ public class TestUserSerialize {
     }
 
     @Test
-    public void TestMarshallUserFromObjectToXmlWithXSD() {
+    void TestMarshallUserFromObjectToXmlWithXSD() {
         try {
             Marshaller marshaller = context.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
@@ -78,7 +77,7 @@ public class TestUserSerialize {
     }
 
     @Test
-    public void TestUnmarshallUserFromXmlToObjectWithXSD() {
+    void TestUnmarshallUserFromXmlToObjectWithXSD() {
         try {
             Unmarshaller unmarshaller = context.createUnmarshaller();
             SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);

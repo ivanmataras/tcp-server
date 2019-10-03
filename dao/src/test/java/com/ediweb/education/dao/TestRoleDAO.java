@@ -1,35 +1,40 @@
 package com.ediweb.education.dao;
 
 import com.ediweb.education.entities.Role;
-import com.ediweb.education.entities.User;
-import org.junit.*;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class TestRoleDAO {
+import static org.junit.jupiter.api.Assertions.*;
+
+class TestRoleDAO {
 
     private static final Logger log = Logger.getLogger(TestRoleDAO.class.getName());
 
-    private Connection connection;
-    private DAO<Role> roleDAO;
+    private static Connection connection;
+    private static DAO<Role> roleDAO;
 
-    @Test @Before
-    public void testOpenConnection() throws SQLException {
+    @Test
+    @BeforeAll
+    static void testOpenConnection() throws SQLException {
         connection = ConnectionPool.getConnection();
-        Assert.assertTrue(connection.isValid(0));
-    }
-
-    @Test @Before
-    public void testCreateRoleDAO() throws SQLException {
-        roleDAO = new RoleDAO(connection);
-        Assert.assertNotNull(roleDAO);
+        assertTrue(connection.isValid(0));
     }
 
     @Test
-    public void testCreateRole() {
+    @BeforeAll
+    static void testCreateRoleDAO() {
+        roleDAO = new RoleDAO(connection);
+        assertNotNull(roleDAO);
+    }
+
+    @Test
+    void testCreateRole() {
 /*        Connection connection = null;
         try {
             connection = ConnectionPool.getConnection();
@@ -53,26 +58,30 @@ public class TestRoleDAO {
 
     }
 
-    @Test @Ignore
-    public void testFindRole() {
+    @Test
+    @Disabled
+    void testFindRole() {
 
     }
 
-    @Test @Ignore
-    public void testUpdateRole() {
+    @Test
+    @Disabled
+    void testUpdateRole() {
 
     }
 
-    @Test @Ignore
-    public void testDeleteRole() {
+    @Test
+    @Disabled
+    void testDeleteRole() {
         roleDAO.delete(1);
         roleDAO.delete(2);
     }
 
-    @Test @After
-    public void testCloseConnection() throws SQLException {
+    @Test
+    @AfterAll
+    static void testCloseConnection() throws SQLException {
         connection.close();
-        Assert.assertFalse(connection.isValid(0));
+        assertFalse(connection.isValid(0));
     }
 
 }
