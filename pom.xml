@@ -158,6 +158,13 @@
                         <release>${maven.compiler.release}</release>
                     </configuration>
                     <dependencies>
+                        <!-- https://mvnrepository.com/artifact/org.codehaus.plexus/plexus-java -->
+                        <dependency>
+                            <groupId>org.codehaus.plexus</groupId>
+                            <artifactId>plexus-java</artifactId>
+                            <version>1.0.3</version>
+                        </dependency>
+                        <!-- https://mvnrepository.com/artifact/org.ow2.asm/asm -->
                         <dependency>
                             <groupId>org.ow2.asm</groupId>
                             <artifactId>asm</artifactId>
@@ -210,6 +217,13 @@
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>3.0.0-M3</version>
                     <dependencies>
+                        <!-- https://mvnrepository.com/artifact/org.codehaus.plexus/plexus-java -->
+                        <dependency>
+                            <groupId>org.codehaus.plexus</groupId>
+                            <artifactId>plexus-java</artifactId>
+                            <version>1.0.3</version>
+                        </dependency>
+                        <!-- https://mvnrepository.com/artifact/org.ow2.asm/asm -->
                         <dependency>
                             <groupId>org.ow2.asm</groupId>
                             <artifactId>asm</artifactId>
