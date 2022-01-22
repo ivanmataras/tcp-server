@@ -2,7 +2,8 @@ package com.ediweb.education.dao;
 
 import com.ediweb.education.entities.Role;
 import com.ediweb.education.entities.User;
-import org.junit.*;
+import jdk.nashorn.internal.ir.annotations.Ignore;
+import org.junit.jupiter.api.*;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -16,16 +17,18 @@ public class TestRoleDAO {
     private Connection connection;
     private DAO<Role> roleDAO;
 
-    @Test @Before
+    @Test
+    @BeforeEach
     public void testOpenConnection() throws SQLException {
         connection = ConnectionPool.getConnection();
-        Assert.assertTrue(connection.isValid(0));
+        Assertions.assertTrue(connection.isValid(0));
     }
 
-    @Test @Before
+    @Test
+    @BeforeEach
     public void testCreateRoleDAO() throws SQLException {
         roleDAO = new RoleDAO(connection);
-        Assert.assertNotNull(roleDAO);
+        Assertions.assertNotNull(roleDAO);
     }
 
     @Test
@@ -53,26 +56,30 @@ public class TestRoleDAO {
 
     }
 
-    @Test @Ignore
+    @Test
+    @Ignore
     public void testFindRole() {
 
     }
 
-    @Test @Ignore
+    @Test
+    @Ignore
     public void testUpdateRole() {
 
     }
 
-    @Test @Ignore
+    @Test
+    @Ignore
     public void testDeleteRole() {
         roleDAO.delete(1);
         roleDAO.delete(2);
     }
 
-    @Test @After
+    @Test
+    @AfterEach
     public void testCloseConnection() throws SQLException {
         connection.close();
-        Assert.assertFalse(connection.isValid(0));
+        Assertions.assertFalse(connection.isValid(0));
     }
 
 }

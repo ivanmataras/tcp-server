@@ -1,9 +1,6 @@
 package com.ediweb.education.dao;
 
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.*;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -15,16 +12,18 @@ public class TestConnectionPoll {
 
     private Connection connection;
 
-    @Test @Before
+    @Test
+    @BeforeEach
     public void testOpenConnection() throws SQLException {
         connection = ConnectionPool.getConnection();
-        Assert.assertTrue(connection.isValid(0));
+        Assertions.assertTrue(connection.isValid(0));
     }
 
-    @Test @After
+    @Test
+    @AfterEach
     public void testCloseConnection() throws SQLException {
         connection.close();
-        Assert.assertFalse(connection.isValid(0));
+        Assertions.assertFalse(connection.isValid(0));
     }
 
 }

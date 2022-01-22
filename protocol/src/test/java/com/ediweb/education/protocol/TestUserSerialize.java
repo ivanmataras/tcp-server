@@ -1,7 +1,8 @@
 package com.ediweb.education.protocol;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.xml.sax.SAXException;
 
 import javax.xml.XMLConstants;
@@ -32,7 +33,7 @@ public class TestUserSerialize {
     private JAXBContext context;
 
     @Test
-    @Before
+    @BeforeEach
     public void TestInitializeResources() {
         xmlFilePath = getClass().getResource("/xml/User.xml").getPath();
         xsdFilePath = getClass().getResource("/xsd/User.xsd").getPath();
@@ -42,7 +43,7 @@ public class TestUserSerialize {
     }
 
     @Test
-    @Before
+    @BeforeEach
     public void TestInitializeJAXBContext() {
         try {
             context = JAXBContext.newInstance(User.class);
@@ -52,7 +53,7 @@ public class TestUserSerialize {
     }
 
     @Test
-    @Before
+    @BeforeEach
     public void TestInitializeUser() {
         user = new User();
         user.setId(1);
